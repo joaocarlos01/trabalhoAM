@@ -108,7 +108,8 @@ class Player extends Sprite {
             return true;
         } else if (camada1[y][x] == 42) {
             console.log("Afogou-se")
-            return true;
+
+            return false;
         }
         return false;
     }

@@ -7,6 +7,8 @@ var hei = screen.height - 258;
 //Inicialização de variáveis atribuidas a elementos de HTML
 var startBtn = document.getElementById("comecar");
 
+var tempo = document.getElementById("tempo");
+
 var sizeImg = document.getElementById("tamanhoImg");
 var sizeImgText = document.getElementById("tamanhoImgText");
 
@@ -27,9 +29,13 @@ var hits = document.getElementById("i");
 //Número de hits escondido antes de começar o jogo
 $("#i").hide();
 hits.style.color = "white";
+hits.style.opacity = "0.5";
 
 $("#aviso").hide();
 aviso.style.opacity = "0.5";
+
+$("#tempo").hide();
+tempo.style.opacity = "0.5";
 
 sizeImg.addEventListener('input', handleChange);
 
@@ -99,11 +105,12 @@ imgTarget.addEventListener("click", () => {
         var seconds = Math.round(timeDiff);
 
         //Mostrar duração do jogo
-        alert(seconds + " seconds");
+        console.log(seconds + " seconds");
 
         //Reinicia os hits
         contadorHits = 0;
-
+        $("#tempo").show();
+        tempo.innerHTML = "Last result: " + seconds + "s";
         //Para o temporizador
         clearTimeout(t);
         mostrar();
@@ -133,7 +140,7 @@ startBtn.addEventListener("click", () => {
 
     //Mostrar quais funcionalidades deveriam estar hidden ou visible
     $("#target, #aviso, #i").show();
-    $("#comecar, #demo, #myRange, #quantos, #tamanhoImg, #valor, #valor2, #valor3").hide();
+    $("#comecar, #demo, #myRange, #quantos, #tamanhoImg, #valor, #valor2, #valor3, #tempo").hide();
 
     //Reinicia os hits
     contadorHits = 0;
@@ -198,7 +205,7 @@ function createParticle(x, y) {
     particle.style.width = `${size}px`;
     particle.style.height = `${size}px`;
     // Generate a random color in a blue/purple palette
-    particle.style.background = `hsl(${Math.random() * 90 + 200}, 100%, 60%)`;
+    particle.style.background = `hsl(${Math.random() * 20 + 200}, 100%, 100%)`;
 
     // Generate a random x & y destination within a distance of 75px from the mouse
     const destinationX = x + (Math.random() - 0.5) * 2 * 75;
@@ -221,7 +228,7 @@ function createParticle(x, y) {
         duration: Math.random() * 3000 + 2000,
         easing: 'cubic-bezier(0, .9, .57, 1)',
         // Delay every particle with a random value of 200ms
-        delay: Math.random() * 200
+        delay: Math.random() * 10
     });
 
     // When the animation is complete, remove the element from the DOM
