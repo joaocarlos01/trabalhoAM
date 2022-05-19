@@ -1,0 +1,105 @@
+html,
+body {
+    height: 100%;
+    background: #47636e;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #133133, #203a43, #2c5364);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #133133, #203a43, #2c5364);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Trebuchet MS';
+    cursor: crosshair;
+    overflow: hidden;
+}
+
+particle {
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#quantos:hover {
+    opacity: 0.9;
+    transform: scale(1.02) perspective(1px);
+}
+
+#tamanhoImg:hover {
+    opacity: 0.9;
+    transform: scale(1.02) perspective(1px);
+}
+
+#myRange:hover {
+    opacity: 0.9;
+    transform: scale(1.02) perspective(1px)
+}
+
+#tamanhoImg,
+#quantos,
+#myRange {
+    -webkit-appearance: none;
+    background: whitesmoke;
+    width: 50%;
+    border-radius: 20px;
+    outline: none;
+    opacity: 1;
+}
+
+#quantos::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #28A745;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#tamanhoImg::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #28A745;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#myRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #28A745;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#quantos::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #0f2027;
+    cursor: pointer;
+}
+
+#myRange::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #0f2027;
+    cursor: pointer;
+}
+
+#tamanhoImg::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #0f2027;
+    cursor: pointer;
+}
