@@ -48,8 +48,93 @@ class TroncoArvore extends Tile {
 
 }
 
+class Arbustros extends Tile {
 
+}
 
+class Cogumelos extends Tile {
+
+}
+
+class Calhau extends Tile {
+
+}
+
+class TroncoOutono extends Tile {
+
+}
+
+class FolhasOutono extends Tile {
+
+}
+
+class TroncoSeco extends Tile {
+
+}
+
+class TopoSeco extends Tile {
+
+}
+
+class Raiz extends Tile {
+
+}
+
+class FolhasNeve extends Tile {
+
+}
+
+class TroncoNeve extends Tile {
+
+}
+
+class CalhauNeve extends Tile {
+
+}
+
+class Arbustro extends Tile {
+
+}
+
+class ArbustroNeve extends Tile {
+
+}
+
+class Cerca extends Tile {
+
+}
+
+class IlhaCimaEsquerda extends Tile {
+
+}
+
+class IlhaCimaDireita extends Tile {
+
+}
+
+class IlhaBaixoEsquerda extends Tile {
+
+}
+
+class IlhaBaixoDireita extends Tile {
+
+}
+
+class IlhaDireita extends Tile {
+
+}
+
+class IlhaEsquerda extends Tile {
+
+}
+
+class IlhaCima extends Tile {
+
+}
+
+class IlhaBaixo extends Tile {
+
+}
 
 
 class Player extends Sprite {
@@ -63,55 +148,35 @@ class Player extends Sprite {
     update() {
         super.draw();
         if (teclasEmBaixo['ArrowLeft']) {
-            if (!this.collision((this.x - this.speed) / this.width, this.y / this.height))
                 this.x -= this.speed;
         }
         if (teclasEmBaixo['ArrowRight']) {
-            if (!this.collision((this.x + this.speed) / this.width, this.y / this.height))
                 this.x += this.speed;
         }
         if (teclasEmBaixo['ArrowUp']) {
-            if (!this.collision(this.x / this.width, (this.y - this.speed) / this.height))
                 this.y -= this.speed;
         }
         if (teclasEmBaixo['ArrowDown']) {
-            if (!this.collision(this.x / this.width, (this.y + this.speed) / this.height))
                 this.y += this.speed;
         }
 
 
     }
 
-    collision(x, y) {
-        //Se a posição y for < 0 ou o y for maior que o tamanho do mapa, então saiu fora do mapa por cima ou baixo
-        if (y < 0) {
-            console.log("Saiu fora do mapa por cima")
-            return true;
-            //Se a posição x for < 0 ou o x for maior que o tamanho do mapa, então saiu fora do mapa pela esquerda ou direita
-        } else if (y >= camada1.length) {
-            console.log("Saiu fora do mapa por baixo")
+    colisaoComElementos(){
 
-            return true;
-            //Se o x e o y que for atribuidos no método update for == 1 então bateu contra uma pedra
-        } else if (x >= camada1[y].length) {
-            console.log("Saiu fora do mapa pela direita")
+    }
 
-            return true;
-            //Se o x e o y que for atribuidos no método update for == 1 então bateu contra uma pedra
-        } else if (x < 0) {
-            console.log("Saiu fora do mapa pela esquerda")
+    colisaoLimitesMapaY(){
+        
+    }
 
-            return true;
-            //Se o x e o y que for atribuidos no método update for == 1 então bateu contra uma pedra
-        } else if (camada1[y][x] == 44) {
-            console.log("Colisão com a pedra")
-            return true;
-        } else if (camada1[y][x] == 42) {
-            console.log("Afogou-se")
+    colisaoLimitesMapaX(){
+        
+    }
 
-            return false;
-        }
-        return false;
+    colisaoPlacas(){
+        
     }
 
 
@@ -175,6 +240,95 @@ class Tilemap extends GameObject {
             this.arrayPecas.push(new TroncoArvore(coluna * 32, fila * 32, 32, 32));
         }
 
+        if (posicaoPeca == 2) {
+            this.arrayPecas.push(new Arbustros(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 24) {
+            this.arrayPecas.push(new Cogumelos(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 23) {
+            this.arrayPecas.push(new Calhau(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 376) {
+            this.arrayPecas.push(new TroncoOutono(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 361) {
+            this.arrayPecas.push(new FolhasOutono(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 379) {
+            this.arrayPecas.push(new Raiz(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 378) {
+            this.arrayPecas.push(new TroncoSeco(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 363) {
+            this.arrayPecas.push(new TopoSeco(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 201) {
+            this.arrayPecas.push(new TroncoNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 181) {
+            this.arrayPecas.push(new FolhasNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 203) {
+            this.arrayPecas.push(new CalhauNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 22) {
+            this.arrayPecas.push(new Arbustro(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 202) {
+            this.arrayPecas.push(new ArbustroNeve(coluna * 32, fila * 32, 32, 32));
+        }
+  
+        if (posicaoPeca == 184) {
+            this.arrayPecas.push(new Cerca(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 66) {
+            this.arrayPecas.push(new IlhaCimaEsquerda(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 67) {
+            this.arrayPecas.push(new IlhaCima(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 68) {
+            this.arrayPecas.push(new IlhaCimaDireita(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 86) {
+            this.arrayPecas.push(new IlhaEsquerda(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 88) {
+            this.arrayPecas.push(new IlhaDireita(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 106) {
+            this.arrayPecas.push(new IlhaBaixoEsquerda(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 107) {
+            this.arrayPecas.push(new IlhaBaixo(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 108) {
+            this.arrayPecas.push(new IlhaBaixoDireita(coluna * 32, fila * 32, 32, 32));
+        }
+
+
 
 
     }
@@ -205,6 +359,28 @@ Agua.load("Imagens/Camada 1/agua.png");
 RelvaClara.load("Imagens/Camada 1/relva_clara.png");
 FolhasArvore.load("Imagens/Camada 2/folhas_arvore_natural.png");
 TroncoArvore.load("Imagens/Camada 2/tronco_arvore_natural.png");
+Arbustros.load("Imagens/Camada 2/arbustro_conjunto.png");
+Cogumelos.load("Imagens/Camada 2/cogumelos.png");
+Calhau.load("Imagens/Camada 2/calhau.png");
+TroncoOutono.load("Imagens/Camada 2/tronco_outono.png");
+FolhasOutono.load("Imagens/Camada 2/folhas_outono.png");
+TroncoSeco.load("Imagens/Camada 2/tronco_seco.png");
+TopoSeco.load("Imagens/Camada 2/topo_seco.png");
+Raiz.load("Imagens/Camada 2/raiz.png");
+FolhasNeve.load("Imagens/Camada 2/folhas_neve.png");
+TroncoNeve.load("Imagens/Camada 2/tronco_neve.png");
+CalhauNeve.load("Imagens/Camada 2/calhau_neve.png");
+Arbustro.load("Imagens/Camada 2/arbustro_natural.png");
+ArbustroNeve.load("Imagens/Camada 2/arbustro_neve.png");
+Cerca.load("Imagens/Camada 2/cerca_neve.png");
+IlhaCima.load("Imagens/Camada 2/ilha_cima.png");
+IlhaCimaDireita.load("Imagens/Camada 2/ilha_direita_cima.png");
+IlhaCimaEsquerda.load("Imagens/Camada 2/ilha_esquerda_cima.png");
+IlhaBaixoEsquerda.load("Imagens/Camada 2/ilha_esquerda_baixo.png");
+IlhaBaixoDireita.load("Imagens/Camada 2/ilha_direita_baixo.png");
+IlhaBaixo.load("Imagens/Camada 2/ilha_baixo.png");
+IlhaDireita.load("Imagens/Camada 2/ilha_direita.png");
+IlhaEsquerda.load("Imagens/Camada 2/ilha_esquerda.png");
 Player.load("imagens/player.png");
 
 
@@ -238,8 +414,8 @@ camada1 = [
     [44, 41, 41, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44],
     [44, 41, 41, 44, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 222, 222, 222, 222, 44, 221, 221, 221, 221, 221, 223, 223, 223, 223, 223, 223, 43, 43, 44, 221, 221, 221, 44],
     [44, 41, 41, 44, 41, 44, 41, 41, 42, 66, 67, 68, 42, 42, 42, 42, 42, 223, 223, 223, 223, 44, 223, 221, 221, 221, 221, 221, 221, 221, 222, 223, 223, 43, 221, 44, 221, 221, 221, 44],
-    [44, 41, 41, 44, 44, 44, 44, 41, 42, 86, 87, 88, 42, 66, 67, 68, 42, 223, 223, 223, 223, 44, 44, 44, 44, 44, 44, 44, 223, 223, 222, 223, 223, 43, 43, 44, 221, 44, 221, 44],
-    [44, 43, 43, 43, 43, 43, 43, 43, 42, 106, 107, 108, 42, 86, 87, 88, 42, 42, 222, 222, 222, 221, 222, 223, 223, 223, 223, 44, 223, 223, 223, 223, 223, 221, 43, 44, 221, 44, 221, 44],
+    [44, 41, 41, 44, 44, 44, 44, 41, 42, 86, 41, 88, 42, 66, 67, 68, 42, 223, 223, 223, 223, 44, 44, 44, 44, 44, 44, 44, 223, 223, 222, 223, 223, 43, 43, 44, 221, 44, 221, 44],
+    [44, 43, 43, 43, 43, 43, 43, 43, 42, 106, 107, 108, 42, 86, 41, 88, 42, 42, 222, 222, 222, 221, 222, 223, 223, 223, 223, 44, 223, 223, 223, 223, 223, 221, 43, 44, 221, 44, 221, 44],
     [44, 43, 43, 43, 43, 43, 43, 43, 42, 42, 42, 42, 42, 106, 107, 108, 42, 42, 222, 222, 222, 222, 221, 223, 223, 223, 223, 44, 221, 221, 221, 223, 223, 221, 43, 44, 221, 44, 221, 44],
     [44, 44, 44, 44, 44, 44, 43, 43, 44, 42, 42, 42, 42, 42, 42, 42, 42, 42, 222, 222, 222, 222, 221, 223, 222, 223, 223, 44, 221, 221, 221, 221, 221, 43, 43, 44, 221, 44, 44, 44],
     [44, 41, 41, 41, 41, 41, 43, 43, 44, 42, 42, 42, 42, 42, 42, 42, 42, 42, 222, 222, 222, 222, 221, 221, 221, 223, 223, 44, 221, 221, 221, 221, 221, 43, 43, 44, 221, 221, 221, 44],
@@ -250,15 +426,15 @@ camada1 = [
     [44, 41, 41, 41, 43, 43, 43, 41, 44, 41, 41, 41, 42, 42, 42, 42, 42, 222, 222, 222, 222, 222, 221, 221, 221, 221, 221, 221, 221, 221, 221, 221, 44, 221, 221, 223, 223, 44, 223, 44],
     [44, 41, 41, 41, 43, 43, 41, 41, 44, 41, 41, 41, 42, 42, 42, 42, 42, 222, 222, 222, 222, 222, 221, 221, 221, 221, 221, 221, 221, 221, 221, 221, 44, 221, 391, 223, 223, 223, 223, 44],
     [44, 41, 41, 43, 43, 43, 41, 41, 44, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 222, 222, 222, 222, 221, 221, 221, 221, 221, 221, 221, 221, 221, 44, 221, 391, 221, 44, 223, 223, 44],
-    [44, 41, 41, 43, 43, 43, 43, 41, 44, 44, 41, 41, 41, 41, 42, 411, 412, 413, 42, 42, 42, 42, 391, 391, 391, 221, 221, 221, 221, 221, 221, 221, 44, 391, 221, 391, 44, 223, 223, 44],
-    [44, 41, 41, 41, 41, 43, 43, 43, 41, 44, 44, 41, 41, 41, 42, 426, 427, 428, 42, 42, 42, 42, 391, 391, 391, 221, 221, 221, 221, 221, 221, 221, 44, 221, 391, 221, 44, 223, 223, 44],
-    [44, 41, 41, 41, 41, 43, 43, 43, 43, 41, 44, 44, 41, 41, 42, 441, 442, 443, 42, 42, 391, 391, 391, 391, 391, 391, 221, 221, 221, 221, 221, 44, 44, 391, 221, 221, 44, 223, 223, 44],
+    [44, 41, 41, 43, 43, 43, 43, 41, 44, 44, 41, 41, 41, 41, 42, 66, 67, 68, 42, 42, 42, 42, 391, 391, 391, 221, 221, 221, 221, 221, 221, 221, 44, 391, 221, 391, 44, 223, 223, 44],
+    [44, 41, 41, 41, 41, 43, 43, 43, 41, 44, 44, 41, 41, 41, 42, 86, 41, 88, 42, 42, 42, 42, 391, 391, 391, 221, 221, 221, 221, 221, 221, 221, 44, 221, 391, 221, 44, 223, 223, 44],
+    [44, 41, 41, 41, 41, 43, 43, 43, 43, 41, 44, 44, 41, 41, 42, 106, 107, 108, 42, 42, 391, 391, 391, 391, 391, 391, 221, 221, 221, 221, 221, 44, 44, 391, 221, 221, 44, 223, 223, 44],
     [44, 41, 41, 41, 41, 41, 43, 43, 43, 43, 41, 44, 44, 44, 42, 42, 42, 42, 42, 42, 42, 391, 391, 391, 391, 391, 221, 221, 221, 221, 44, 391, 391, 391, 44, 44, 44, 44, 44, 44],
-    [44, 41, 41, 41, 41, 41, 41, 43, 43, 43, 41, 41, 41, 44, 44, 44, 42, 411, 412, 413, 42, 391, 391, 391, 391, 391, 391, 43, 221, 221, 44, 391, 391, 391, 44, 391, 391, 391, 391, 44],
-    [44, 391, 391, 391, 391, 391, 391, 391, 43, 43, 43, 43, 391, 391, 391, 44, 42, 426, 427, 428, 42, 71, 72, 73, 391, 391, 391, 43, 43, 221, 44, 44, 44, 391, 391, 391, 391, 44, 391, 44],
-    [44, 391, 391, 391, 391, 391, 391, 391, 43, 43, 43, 43, 391, 391, 391, 44, 42, 441, 442, 443, 42, 91, 92, 93, 391, 391, 43, 43, 43, 43, 391, 391, 44, 391, 391, 391, 391, 44, 391, 44],
-    [44, 391, 44, 44, 391, 391, 391, 391, 391, 43, 43, 43, 43, 391, 391, 44, 42, 42, 42, 42, 42, 111, 112, 113, 391, 391, 43, 43, 43, 43, 391, 391, 44, 44, 44, 391, 391, 44, 391, 44],
-    [44, 391, 391, 391, 44, 44, 44, 391, 391, 43, 43, 43, 43, 43, 391, 44, 42, 42, 42, 42, 42, 42, 42, 391, 391, 43, 43, 43, 43, 44, 391, 391, 391, 391, 44, 391, 391, 44, 391, 44],
+    [44, 41, 41, 41, 41, 41, 41, 43, 43, 43, 41, 41, 41, 44, 44, 44, 42, 66, 67, 68, 42, 391, 391, 391, 391, 391, 391, 43, 221, 221, 44, 391, 391, 391, 44, 391, 391, 391, 391, 44],
+    [44, 391, 391, 391, 391, 391, 391, 391, 43, 43, 43, 43, 391, 391, 391, 44, 42, 86, 41, 88, 42, 66, 67, 68, 391, 391, 391, 43, 43, 221, 44, 44, 44, 391, 391, 391, 391, 44, 391, 44],
+    [44, 391, 391, 391, 391, 391, 391, 391, 43, 43, 43, 43, 391, 391, 391, 44, 42, 106, 107, 108, 42, 86, 41, 88, 391, 391, 43, 43, 43, 43, 391, 391, 44, 391, 391, 391, 391, 44, 391, 44],
+    [44, 391, 44, 44, 391, 391, 391, 391, 391, 43, 43, 43, 43, 391, 391, 44, 42, 42, 42, 42, 42, 106, 107, 108, 391, 391, 43, 43, 43, 43, 391, 391, 44, 44, 44, 391, 391, 44, 391, 44],
+    [44, 391, 391, 391, 44, 44, 44, 391, 391, 43, 43, 43, 43, 43, 391, 44, 42, 42, 42, 42, 42, 42, 42, 42, 391, 43, 43, 43, 43, 44, 391, 391, 391, 391, 44, 391, 391, 44, 391, 44],
     [44, 391, 391, 391, 44, 44, 44, 44, 391, 43, 43, 391, 43, 43, 43, 43, 43, 43, 43, 43, 42, 42, 42, 42, 43, 43, 43, 43, 44, 44, 391, 391, 391, 391, 44, 44, 44, 44, 391, 44],
     [44, 391, 44, 44, 44, 391, 391, 44, 391, 43, 43, 391, 391, 43, 43, 43, 43, 43, 43, 43, 43, 42, 42, 42, 43, 43, 43, 44, 44, 391, 391, 44, 44, 391, 391, 391, 44, 391, 391, 44],
     [44, 391, 44, 391, 44, 391, 391, 44, 391, 43, 43, 44, 44, 44, 44, 44, 391, 391, 391, 391, 43, 43, 42, 42, 43, 43, 44, 43, 43, 43, 391, 391, 44, 391, 44, 391, 44, 391, 391, 44],
@@ -296,7 +472,7 @@ camada2 = [
     [0, 0, 0, 361, 0, 0, 0, 0, 0, 0, 0, 376, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0],
     [0, 0, 0, 376, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 379, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 379, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0],
-    [0, 0, 0, 0, 0, 0, 0, 364, 0, 0, 0, 0, 379, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 378, 0, 0, 0, 0, 379, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
