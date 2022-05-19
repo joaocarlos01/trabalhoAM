@@ -62,20 +62,55 @@ class Player extends Sprite {
 
     update() {
         super.draw();
-
         if (teclasEmBaixo['ArrowLeft']) {
-            this.x -= this.speed;
+            if (!this.collision((this.x - this.speed) / this.width, this.y / this.height))
+                this.x -= this.speed;
         }
         if (teclasEmBaixo['ArrowRight']) {
-            this.x += this.speed;
+            if (!this.collision((this.x + this.speed) / this.width, this.y / this.height))
+                this.x += this.speed;
         }
         if (teclasEmBaixo['ArrowUp']) {
-            this.y -= this.speed;
+            if (!this.collision(this.x / this.width, (this.y - this.speed) / this.height))
+                this.y -= this.speed;
         }
         if (teclasEmBaixo['ArrowDown']) {
-            this.y += this.speed;
+            if (!this.collision(this.x / this.width, (this.y + this.speed) / this.height))
+                this.y += this.speed;
         }
 
+
+    }
+
+    collision(x, y) {
+        //Se a posição y for < 0 ou o y for maior que o tamanho do mapa, então saiu fora do mapa por cima ou baixo
+        if (y < 0) {
+            console.log("Saiu fora do mapa por cima")
+            return true;
+            //Se a posição x for < 0 ou o x for maior que o tamanho do mapa, então saiu fora do mapa pela esquerda ou direita
+        } else if (y >= camada1.length) {
+            console.log("Saiu fora do mapa por baixo")
+
+            return true;
+            //Se o x e o y que for atribuidos no método update for == 1 então bateu contra uma pedra
+        } else if (x >= camada1[y].length) {
+            console.log("Saiu fora do mapa pela direita")
+
+            return true;
+            //Se o x e o y que for atribuidos no método update for == 1 então bateu contra uma pedra
+        } else if (x < 0) {
+            console.log("Saiu fora do mapa pela esquerda")
+
+            return true;
+            //Se o x e o y que for atribuidos no método update for == 1 então bateu contra uma pedra
+        } else if (camada1[y][x] == 44) {
+            console.log("Colisão com a pedra")
+            return true;
+        } else if (camada1[y][x] == 42) {
+            console.log("Afogou-se")
+            return true;
+        }
+        return false;
     }
 
 
