@@ -52,6 +52,37 @@ class TroncoArvore extends Tile {
 
 
 
+class Player extends Sprite {
+    //Construtor de um jogador
+    constructor(x, y, width, height) {
+        super(x, y, width, height);
+        //A velocidade de um jogador é 32
+        this.speed = 32;
+    }
+
+    update() {
+        super.draw();
+
+        if (teclasEmBaixo['ArrowLeft']) {
+            this.x -= this.speed;
+        }
+        if (teclasEmBaixo['ArrowRight']) {
+            this.x += this.speed;
+        }
+        if (teclasEmBaixo['ArrowUp']) {
+            this.y -= this.speed;
+        }
+        if (teclasEmBaixo['ArrowDown']) {
+            this.y += this.speed;
+        }
+
+    }
+
+
+}
+
+
+
 class Tilemap extends GameObject {
 
     constructor(x, y, width, height, mapa) {
@@ -138,10 +169,11 @@ Agua.load("static/Imagens/Camada 1/agua.png");
 RelvaClara.load("static/Imagens/Camada 1/relva_clara.png");
 FolhasArvore.load("static/Imagens/Camada 2/folhas_arvore_natural.png");
 TroncoArvore.load("static/Imagens/Camada 2/tronco_arvore_natural.png");
+Player.load("static/imagens/player.png");
 
 
 
-const fps = 6;
+const fps = 12;
 const timeBetweenUpdateDraw = 1000 / fps;
 let acumulatedTimeBetweenFrames = 0;
 let timeLastFrame;
@@ -153,6 +185,7 @@ var camada3 = [];
 let tilemap, tilemap2;
 const numAssets = 10;
 let numAssetsLoaded = 0;
+var player;
 
 window.addEventListener('assetLoad', (e) => {
 
@@ -265,6 +298,8 @@ camada3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 
 tilemap = new Tilemap(0, 0, canvas.width, canvas.height, camada1);
 tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
+player = new Player(32, 0, 32, 32);
+
 
 function startGame() {
 
@@ -282,7 +317,7 @@ function animate(time) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         tilemap.draw();
         tilemap2.draw();
-
+        player.update();
         acumulatedTimeBetweenFrames = 0;
     }
 
