@@ -1,3 +1,5 @@
 Trabalho de Aplicações Multimédia
 
-Em desenvolvimento...
+Grupo:
+João Vinagre - 190100237
+Miguel Serdeira - 190100269
