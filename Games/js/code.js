@@ -87,7 +87,7 @@ function change() {
 }
 
 //Quando se clica no target
-imgTarget.addEventListener("click", () => {
+imgTarget.addEventListener("mousedown", () => {
     //Contador +1
     contadorHits++;
     hits.innerHTML = "Hits: " + contadorHits;
@@ -173,7 +173,7 @@ function mostrar() {
 }
 
 if (document.body.animate) {
-    document.querySelector('#target').addEventListener('click', pop);
+    document.querySelector('#target').addEventListener('mousedown', pop);
 }
 
 function pop(e) {
