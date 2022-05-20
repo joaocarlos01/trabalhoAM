@@ -1,12 +1,19 @@
 "use strict";
 
-const mainTiles = document.querySelectorAll("aside > div");
+const mainTiles = document.querySelectorAll("div > div");
 const map = document.querySelector("#map");
 const btnSave = document.querySelector("#export");
 const uploader = document.querySelector("#uploader");
 const filas = document.getElementById("idFilas");
 const colunas = document.getElementById("idColunas");
 const medidas = document.getElementById("idMedidas");
+const relva = document.getElementById("relva");
+const terra = document.getElementById("terra");
+const neve = document.getElementById("neve");
+const pedra = document.getElementById("pedra");
+const agua = document.getElementById("agua");
+
+
 
 var numRows = filas.value;
 var numCols = colunas.value;
@@ -17,8 +24,8 @@ filas.addEventListener("change", () => {
 
 
 
-map.style.width = 64* numCols +"px";
-map.style.heigth = 64* numRows + "px";
+map.style.width = 32* numCols +"px";
+map.style.heigth = 32* numRows + "px";
 
 
 

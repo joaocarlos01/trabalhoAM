@@ -16,52 +16,68 @@ main {
     display: flex;
 }
 
-aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
 
 aside div,
 .cell > div {
-    width: 64px;
-    height: 64px;
-    background-image: url("assets/tiles.png");
+    width: 32px;
+    height: 32px;
+    
 }
 
-#chao,
-.chao {
-    background-position-x: calc(-1 * 64px);
+#relva, 
+.relva {
+    display: inline-block;
+    background-image: url("imagens/Camada 1/relva.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
 }
-#troncoArvore,
-.troncoArvore {
-    background-position-x: calc(-2 * 64px);
-    z-index: 1;
+
+#terra,
+.terra {
+    display: inline-block;
+    background-image: url("imagens/Camada 1/terra.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
 }
-#topoArvore,
-.topoArvore {
-    background-position-x: calc(-3 * 64px);
-    z-index: 1;
+
+#neve,
+.neve {
+    display: inline-block;
+    background-image: url("imagens/Camada 1/neve.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
 }
-#arbusto,
-.arbusto {
-    background-position-x: calc(-4 * 64px);
-    z-index: 1;
+
+#pedra,
+.pedra {
+    display: inline-block;
+    background-image: url("imagens/Camada 1/pedra.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
 }
+
+#agua,
+.agua {
+    display: inline-block;
+    background-image: url("imagens/Camada 1/agua.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
 
 #map {
     
     display: flex;
     flex-wrap: wrap;
-    background-color: palegoldenrod;
-
+    background-color: #AAAAAAAA;
     margin-left: 100px;
+   
 }
 
 .cell {
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
     border: solid 1px;
     position: relative;
@@ -75,10 +91,6 @@ aside div,
     position: absolute;
     top: calc(-1 * var(--border-size));
     left: calc(-1 * var(--border-size));
-}
-
-.tile {
-    background-image: url("assets/tiles.png");
 }
 
 p {
