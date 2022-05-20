@@ -31,7 +31,6 @@ class Terra extends Tile {
 
 }
 
-//AGUA
 class Agua extends Tile {
 
 }
@@ -143,46 +142,153 @@ class Player extends Sprite {
         super(x, y, width, height);
         //A velocidade de um jogador é 32
         this.speed = 32;
+        this.vida = 100;
     }
+
+    colisaoBlocos(x, y) {
+        if (camada1[y][x] === 44) {
+            return true;
+        }
+        else if (camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379) {
+            return true;
+        }
+        else {
+            return false
+        };
+    }
+
+    colisaoAgua(x, y) {
+        if (camada1[y][x] === 42) {
+          
+            return true;
+        }
+        else {
+            return false
+        };
+    }
+
 
     update() {
         super.draw();
+
+        //posição atual do player
+        let posicaoX = this.x / this.width;
+        let posicaoY = this.y / this.height;
+
+        //Controlos com as setas
+
         if (teclasEmBaixo['ArrowLeft']) {
+            posicaoX--;
+            if (this.colisaoBlocos(posicaoX, posicaoY)) {
+
+                return;
+            }
+            else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.x -= this.speed;
+                player.vida - 100;
+                return;
+            }
+            this.x -= this.speed;
         }
+
         if (teclasEmBaixo['ArrowRight']) {
+            posicaoX++;
+            if (this.colisaoBlocos(posicaoX, posicaoY)) {
+
+                return;
+            }
+            if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.x += this.speed;
+                player.vida - 100;
+                return;
+            }
+
+    
+
+            this.x += this.speed;
+            
         }
+
         if (teclasEmBaixo['ArrowUp']) {
+
+            posicaoY--;
+            if (this.colisaoBlocos(posicaoX, posicaoY)) {
+                return;
+            }
+            else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.y -= this.speed;
+                player.vida - 100;
+            }
+        
+            this.y -= this.speed;
+            return;
         }
+
         if (teclasEmBaixo['ArrowDown']) {
+
+            posicaoY++;
+            if (this.colisaoBlocos(posicaoX, posicaoY)) {
+                return;
+            }
+            else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.y += this.speed;
+                player.vida - 100;
+                return;
+            }
+            
+
+            this.y += this.speed;
+            return;
         }
 
+        // limpar a consola de eventos
 
-    }
-
-    colisaoComElementos(){
-
-    }
-
-    colisaoLimitesMapaY(){
-        
-    }
-
-    colisaoLimitesMapaX(){
-        
-    }
-
-    colisaoPlacas(){
-        
     }
 
 
 }
 
+class Enemy extends Sprite {
+    constructor(x, y, width, height) {
+        super(x, y, width, height);
+        //A velocidade de um jogador é 32
+        this.speed = 32;
+        this.vida = 100;
+        this.direcao ="-";
+      
+    }
+    colisaoBlocos(x, y) {
+        if (camada1[y][x] === 44) {
+            return true;
+        }
+        else if (camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379) {
+            return true;
+        }
+        else {
+            return false
+        };
+    }
 
+    draw(){
+        super.draw();
+    }
+    update(){
+        
+        if(this.x <=0){
+            this.x +=this.speed
+            return;
+        }
+
+        else if(this.x >=288){
+            this.x -=this.speed;
+            return;
+        }
+        this.x -=this.speed;
+        
+    }
+
+
+}
 
 class Tilemap extends GameObject {
 
@@ -291,7 +397,7 @@ class Tilemap extends GameObject {
         if (posicaoPeca == 202) {
             this.arrayPecas.push(new ArbustroNeve(coluna * 32, fila * 32, 32, 32));
         }
-  
+
         if (posicaoPeca == 184) {
             this.arrayPecas.push(new Cerca(coluna * 32, fila * 32, 32, 32));
         }
@@ -382,6 +488,7 @@ IlhaBaixo.load("Imagens/Camada 2/ilha_baixo.png");
 IlhaDireita.load("Imagens/Camada 2/ilha_direita.png");
 IlhaEsquerda.load("Imagens/Camada 2/ilha_esquerda.png");
 Player.load("imagens/player.png");
+Enemy.load("imagens/player.png");
 
 
 
@@ -397,7 +504,7 @@ var camada3 = [];
 let tilemap, tilemap2;
 const numAssets = 10;
 let numAssetsLoaded = 0;
-var player;
+var player, enemy;
 
 window.addEventListener('assetLoad', (e) => {
 
@@ -511,6 +618,7 @@ camada3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 tilemap = new Tilemap(0, 0, canvas.width, canvas.height, camada1);
 tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
 player = new Player(32, 0, 32, 32);
+enemy = new Enemy(224, 288, 32, 32);
 
 
 function startGame() {
@@ -528,8 +636,13 @@ function animate(time) {
     if (acumulatedTimeBetweenFrames > timeBetweenUpdateDraw) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         tilemap.draw();
-        tilemap2.draw();
         player.update();
+        enemy.draw();
+        window.setInterval(() => {
+            enemy.update();
+          }, 2000);
+        tilemap2.draw();
+
         acumulatedTimeBetweenFrames = 0;
     }
 
