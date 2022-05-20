@@ -1,0 +1,88 @@
+:root {
+    --border-size: 1px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
+
+body {
+    font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+aside div,
+.cell > div {
+    width: 64px;
+    height: 64px;
+    background-image: url("assets/tiles.png");
+}
+
+#chao,
+.chao {
+    background-position-x: calc(-1 * 64px);
+}
+#troncoArvore,
+.troncoArvore {
+    background-position-x: calc(-2 * 64px);
+    z-index: 1;
+}
+#topoArvore,
+.topoArvore {
+    background-position-x: calc(-3 * 64px);
+    z-index: 1;
+}
+#arbusto,
+.arbusto {
+    background-position-x: calc(-4 * 64px);
+    z-index: 1;
+}
+
+#map {
+    
+    display: flex;
+    flex-wrap: wrap;
+    background-color: palegoldenrod;
+
+    margin-left: 100px;
+}
+
+.cell {
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    border: solid 1px;
+    position: relative;
+}
+
+.cell.hover {
+    border: 2px dotted green;
+}
+
+.cell > div {
+    position: absolute;
+    top: calc(-1 * var(--border-size));
+    left: calc(-1 * var(--border-size));
+}
+
+.tile {
+    background-image: url("assets/tiles.png");
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+

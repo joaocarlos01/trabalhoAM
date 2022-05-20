@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="tilemap.css" />
+    <title>Square Tile Map</title>
+    <script src="tilemap.js" defer></script>
+</head>
+
+<body>
+    <div>
+        
+        <form >
+        <label for="idColunas">Colunas: </label>
+        <SELECT id="idColunas">
+
+            <OPTION value="10">10
+
+            <OPTION value="20">20
+
+            <OPTION value="30">30
+
+            <OPTION value="40">40
+
+            <OPTION value="50">50
+
+        </SELECT>
+    </form>
+
+    <form >
+        <label for="idFilas">Filas: </label>
+        <SELECT id="idFilas">
+
+            <OPTION value="10">10
+
+            <OPTION value="20">20
+
+            <OPTION value="30">30
+
+            <OPTION value="40">40
+
+            <OPTION value="50">50
+
+        </SELECT>
+</form>
+<button id="idMedidas">Aplicar</button>
+    <main>
+        <aside>
+            <div id="relva" draggable="true" data-index="0"></div>
+
+            <div id="chao" draggable="true" data-index="1"></div>
+
+            <div id="troncoArvore" draggable="true" data-index="2"></div>
+
+            <div id="topoArvore" draggable="true" data-index="3"></div>
+
+            <div id="arbusto" draggable="true" data-index="4"></div>
+        </aside>
+
+        <div id="map"></div>
+    </main>
+
+    <p>
+        <span>Dica:</span> Usa Botão direito do rato para apagar 
+    </p>
+
+       <button id="export">Export</button>
+
+   
+    
+   
+</body>
+
+</html>
