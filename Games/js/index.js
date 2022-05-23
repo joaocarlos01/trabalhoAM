@@ -197,6 +197,7 @@ class Player extends Sprite {
             this.placas ++;
             camada3[posicaoY][posicaoX] = 0;
             console.log("Colisão")
+            idScore.innerHTML = player.placas + " / 11";
             console.log(this.placas)
         }
         //Controlos com as setas
@@ -211,6 +212,7 @@ class Player extends Sprite {
             else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.x -= this.speed;
                 player.vida - 100;
+                idVida.innerHTML = player.vida;
                 return;
             }
 
@@ -528,6 +530,7 @@ let tilemap, tilemap2, tilemap3;
 const numAssets = 10;
 let numAssetsLoaded = 0;
 var player, enemy, zombie;
+var idScore, idVida;
 
 window.addEventListener('assetLoad', (e) => {
 
@@ -644,6 +647,9 @@ tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
 tilemap3 = new Tilemap(0, 0, canvas.width, canvas.height, camada3);
 player = new Player(32, 0, 32, 32);
 enemy = new Enemy(96, 384, 32, 32);
+idScore = document.getElementById("idScore");
+idVida = document.getElementById("idVida");
+
 
 
 function startGame() {
