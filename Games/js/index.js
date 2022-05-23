@@ -154,7 +154,7 @@ class Player extends Sprite {
         }
         else {
             return false
-        };
+        }
     }
 
     colisaoAgua(x, y) {
@@ -252,42 +252,38 @@ class Enemy extends Sprite {
     constructor(x, y, width, height) {
         super(x, y, width, height);
         //A velocidade de um jogador é 32
-        this.speed = 32;
+        this.speed = 8;
         this.vida = 100;
-        this.direcao ="-";
       
     }
     colisaoBlocos(x, y) {
-        if (camada1[y][x] === 44) {
+        if (camada1[y][x] == 44) {
             return true;
         }
-        else if (camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379) {
+        else if (camada2[y][x] == 21 || camada2[y][x] == 376 || camada2[y][x] == 378 || camada2[y][x] == 184 || camada2[y][x] == 203 || camada2[y][x] == 23 || camada2[y][x] == 379) {
             return true;
         }
         else {
             return false
-        };
+        }
     }
 
     draw(){
         super.draw();
     }
+    
     update(){
-        
-        if(this.x <=0){
-            this.x +=this.speed
-            return;
-        }
+        let posicaoX = this.x / this.width;
+        let posicaoY = this.y / this.height;
 
-        else if(this.x >=288){
-            this.x -=this.speed;
-            return;
-        }
-        this.x -=this.speed;
+      if (this.colisaoBlocos(posicaoX, posicaoY) == true){
+        this.speed = -(this.speed); 
+      }
+      this.x += this.speed;
         
     }
 
-
+    
 }
 
 class Tilemap extends GameObject {
@@ -448,9 +444,6 @@ class Tilemap extends GameObject {
     }
 }
 
-
-
-
 //load do player
 
 
@@ -492,7 +485,7 @@ Enemy.load("imagens/player.png");
 
 
 
-const fps = 12;
+const fps = 24;
 const timeBetweenUpdateDraw = 1000 / fps;
 let acumulatedTimeBetweenFrames = 0;
 let timeLastFrame;
@@ -618,7 +611,7 @@ camada3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 tilemap = new Tilemap(0, 0, canvas.width, canvas.height, camada1);
 tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
 player = new Player(32, 0, 32, 32);
-enemy = new Enemy(224, 288, 32, 32);
+enemy = new Enemy(96, 384, 32, 32);
 
 
 function startGame() {
@@ -638,9 +631,7 @@ function animate(time) {
         tilemap.draw();
         player.update();
         enemy.draw();
-        window.setInterval(() => {
-            enemy.update();
-          }, 2000);
+        enemy.update();
         tilemap2.draw();
 
         acumulatedTimeBetweenFrames = 0;
