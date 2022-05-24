@@ -197,7 +197,7 @@ class Player extends Sprite {
         //posição atual do player
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
-
+        let ganhar = false;
         if (this.colisaoAgua(posicaoX, posicaoY)) {
             this.vida -= 10;
             idVida.innerHTML = this.vida;
@@ -213,17 +213,23 @@ class Player extends Sprite {
             console.log("Colisão")
             idScore.innerHTML = player.placas + " / 11";
             console.log(this.placas)
+            if (this.placas == 11) {
+                ganhar = true;
+            }
         }
         //Controlos com as setas
 
         if (this.colisaoEnemy(posicaoX, posicaoY)) {
             this.vida -= 25;
             idVida.innerHTML = this.vida;
+
             if (this.vida <= 0) {
                 alert("morreu");
                 location.reload();
             }
+
         }
+
 
         if (teclasEmBaixo['ArrowLeft']) {
             posicaoX--;
