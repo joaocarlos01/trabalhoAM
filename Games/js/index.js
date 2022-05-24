@@ -198,6 +198,15 @@ class Player extends Sprite {
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
 
+        if (this.colisaoAgua(posicaoX, posicaoY)) {
+            this.vida -= 10;
+            idVida.innerHTML = this.vida;
+            if (this.vida <= 0) {
+                alert("morreu");
+                location.reload();
+            }
+        }
+
         if (this.colisaoPlaca(posicaoX, posicaoY)) {
             this.placas++;
             camada3[posicaoY][posicaoX] = 0;
@@ -210,7 +219,7 @@ class Player extends Sprite {
         if (this.colisaoEnemy(posicaoX, posicaoY)) {
             this.vida -= 25;
             idVida.innerHTML = this.vida;
-            if (this.vida == 0) {
+            if (this.vida <= 0) {
                 alert("morreu");
                 location.reload();
             }
@@ -222,13 +231,7 @@ class Player extends Sprite {
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
-            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
-                this.x -= this.speed;
-                player.vida - 100;
-                idVida.innerHTML = player.vida;
-                return;
             }
-
 
             this.x -= this.speed;
         }
@@ -237,10 +240,6 @@ class Player extends Sprite {
             posicaoX++;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
-                return;
-            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
-                this.x += this.speed;
-                player.vida - 100;
                 return;
             }
 
@@ -253,9 +252,6 @@ class Player extends Sprite {
             posicaoY--;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
-            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
-                this.y -= this.speed;
-                player.vida - 100;
             }
 
             this.y -= this.speed;
@@ -266,10 +262,6 @@ class Player extends Sprite {
 
             posicaoY++;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
-                return;
-            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
-                this.y += this.speed;
-                player.vida - 100;
                 return;
             }
             this.y += this.speed;
@@ -524,7 +516,7 @@ Player.load("imagens/player.png");
 Enemy.load("imagens/enemy.png");
 
 
-const fps = 24;
+const fps = 16;
 const timeBetweenUpdateDraw = 1000 / fps;
 let acumulatedTimeBetweenFrames = 0;
 let timeLastFrame;
