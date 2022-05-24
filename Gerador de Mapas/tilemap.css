@@ -10,6 +10,12 @@
 
 body {
     font-size: 1.5rem;
+        height: 100%;
+        background: #47636e;
+        background: -webkit-linear-gradient(to right, #133133, #AAAAAA);
+        background: linear-gradient(to right, #133133, #AAAAAA);
+        font-family: 'Trebuchet MS';
+        color: white;
 }
 
 main {
@@ -23,6 +29,7 @@ aside div,
     height: 32px;
     
 }
+
 
 #relva, 
 .relva {
@@ -64,13 +71,163 @@ aside div,
     vertical-align: middle;
 }
 
+#arbustroConjunto,
+.arbustroConjunto {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/arbustro_conjunto.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#arbustro,
+.arbustro {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/arbustro_natural.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#arbustroNeve,
+.arbustroNeve {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/arbustro_neve.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#arbustroConjuntoOutono,
+.arbustroConjuntoOutono {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/arbustro_outono.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#calhau,
+.calhau {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/calhau.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#calhauNeve,
+.calhauNeve {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/calhau_neve.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#cercaNeve,
+.cercaNeve {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/cerca_neve.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#cogumelos,
+.gogumelos {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/cogumelos.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#folhas,
+.folhas {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/folhas_arvore_natural.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#folhasNeve,
+.folhasNeve {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/folhas_neve.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#folhasOutono,
+.folhasOutono {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/folhas_outono.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#raiz,
+.raiz {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/raiz.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#topoSeco,
+.topoSeco {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/topo_seco.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#tronco,
+.tronco {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/tronco_arvore_natural.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#troncoNeve,
+.troncoNeve {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/tronco_neve.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#troncoOutono,
+.troncoOutono {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/tronco_outono.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#troncoSeco,
+.troncoSeco {
+    display: inline-block;
+    background-image: url("imagens/Camada 2/tronco_seco.png");
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+#blocos {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 820px;
+
+}
+
 
 #map {
     
     display: flex;
     flex-wrap: wrap;
     background-color: #AAAAAAAA;
-    margin-left: 100px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    
    
 }
 

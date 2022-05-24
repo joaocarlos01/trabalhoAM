@@ -6,27 +6,32 @@ const btnSave = document.querySelector("#export");
 const uploader = document.querySelector("#uploader");
 const filas = document.getElementById("idFilas");
 const colunas = document.getElementById("idColunas");
-const medidas = document.getElementById("idMedidas");
 const relva = document.getElementById("relva");
 const terra = document.getElementById("terra");
 const neve = document.getElementById("neve");
 const pedra = document.getElementById("pedra");
 const agua = document.getElementById("agua");
+const botao = document.getElementById("idMedidas");
+const reset = document.getElementById("idReset");
 
-
-
-var numRows = filas.value;
-var numCols = colunas.value;
+var numRows = filas.value , numCols = colunas.value;
 
 filas.addEventListener("change", () => {
-    console.log(filas.value)
+    numRows = filas.value;
 });
 
+colunas.addEventListener("change", () => {
+    numCols = colunas.value; 
+});
 
-
-map.style.width = 32* numCols +"px";
-map.style.heigth = 32* numRows + "px";
-
+botao.onclick =function atualizarMedidas (){
+    map.style.width = 32* numCols +"px";
+    map.style.heigth = 32* numRows + "px";
+    createGrid(numRows, numCols);
+    setUpDragEvents();
+    botao.disabled = true;
+    reset.disabled = false;
+}
 
 
 btnSave.addEventListener("click", (event) => {
@@ -35,16 +40,10 @@ btnSave.addEventListener("click", (event) => {
     downloadFile(mapJSON);
 });
 
-medidas.addEventListener("click", (event) => {
-   location.reload(); 
+reset.addEventListener("click", (event) => {
+    location.reload();
 });
 
-
-
-(() => {
-    createGrid(numRows, numCols);
-    setUpDragEvents();
-})();
 
 function createGrid(numRows, numCols) {
     const numCells = numRows * numCols;
