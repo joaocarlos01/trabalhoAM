@@ -157,66 +157,74 @@ class Player extends Sprite {
     colisaoBlocos(x, y) {
         if (camada1[y][x] === 44) {
             return true;
-        }
-        else if (camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379) {
+        } else if (camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379) {
             return true;
-        }
-        else {
+        } else {
             return false
         }
     }
 
     colisaoAgua(x, y) {
         if (camada1[y][x] === 42) {
-          
+
             return true;
-        }
-        else {
+        } else {
             return false
         };
     }
 
     colisaoPlaca(x, y) {
-        if (camada3[y][x] == 3 || camada3[y][x]== 183) {
-          
+        if (camada3[y][x] == 3 || camada3[y][x] == 183) {
             return true;
-        }
-        else {
+        } else {
+            return false
+        };
+    }
+
+    colisaoEnemy(x, y) {
+        if (enemy.x == player.x && enemy.y == player.y) {
+
+            return true;
+        } else {
             return false
         };
     }
 
     update() {
-        super.draw();
 
+        super.draw();
         //posição atual do player
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
 
+
         if (this.colisaoPlaca(posicaoX, posicaoY)) {
-            this.placas ++;
+            this.placas++;
             camada3[posicaoY][posicaoX] = 0;
             console.log("Colisão")
             idScore.innerHTML = player.placas + " / 11";
             console.log(this.placas)
         }
         //Controlos com as setas
-        
+
+        if (this.colisaoEnemy(posicaoX, posicaoY)) {
+            this.vida -= 25;
+            idVida.innerHTML = this.vida;
+        }
 
         if (teclasEmBaixo['ArrowLeft']) {
             posicaoX--;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
-            }
-            else if (this.colisaoAgua(posicaoX, posicaoY)) {
+            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.x -= this.speed;
                 player.vida - 100;
                 idVida.innerHTML = player.vida;
                 return;
             }
 
-          
+
             this.x -= this.speed;
         }
 
@@ -225,15 +233,14 @@ class Player extends Sprite {
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
-            }
-            else if (this.colisaoAgua(posicaoX, posicaoY)) {
+            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.x += this.speed;
                 player.vida - 100;
                 return;
             }
 
             this.x += this.speed;
-            
+
         }
 
         if (teclasEmBaixo['ArrowUp']) {
@@ -241,12 +248,11 @@ class Player extends Sprite {
             posicaoY--;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
-            }
-            else if (this.colisaoAgua(posicaoX, posicaoY)) {
+            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.y -= this.speed;
                 player.vida - 100;
             }
-       
+
             this.y -= this.speed;
             return;
         }
@@ -256,8 +262,7 @@ class Player extends Sprite {
             posicaoY++;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
-            }
-            else if (this.colisaoAgua(posicaoX, posicaoY)) {
+            } else if (this.colisaoAgua(posicaoX, posicaoY)) {
                 this.y += this.speed;
                 player.vida - 100;
                 return;
@@ -277,35 +282,33 @@ class Enemy extends Sprite {
         //A velocidade de um jogador é 32
         this.speed = 8;
         this.vida = 100;
-      
+
     }
     colisaoBlocos(x, y) {
         if (camada1[y][x] == 44) {
             return true;
-        }
-        else if (camada2[y][x] == 21 || camada2[y][x] == 376 || camada2[y][x] == 378 || camada2[y][x] == 184 || camada2[y][x] == 203 || camada2[y][x] == 23 || camada2[y][x] == 379) {
+        } else if (camada2[y][x] == 21 || camada2[y][x] == 376 || camada2[y][x] == 378 || camada2[y][x] == 184 || camada2[y][x] == 203 || camada2[y][x] == 23 || camada2[y][x] == 379) {
             return true;
-        }
-        else {
+        } else {
             return false
         }
     }
 
-    draw(){
+    draw() {
         super.draw();
     }
-    
-    update(){
+
+    update() {
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
 
-      if (this.colisaoBlocos(posicaoX, posicaoY) == true){
-        this.speed = -(this.speed); 
-      }
-      this.x += this.speed;
-        
+        if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
+            this.speed = -(this.speed);
+        }
+        this.x += this.speed;
+
     }
- 
+
 }
 
 
@@ -471,7 +474,7 @@ class Tilemap extends GameObject {
             peca.draw();
         }
     }
-   
+
 }
 
 //load do player
@@ -649,7 +652,7 @@ player = new Player(32, 0, 32, 32);
 enemy = new Enemy(96, 384, 32, 32);
 idScore = document.getElementById("idScore");
 idVida = document.getElementById("idVida");
-
+idVida.innerHTML = 100;
 
 
 function startGame() {

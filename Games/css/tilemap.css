@@ -5,7 +5,6 @@ canvas {
     margin-right: auto;
     display: block;
     width: 1100px;
-
 }
 
 #scoreboard {
@@ -18,9 +17,7 @@ canvas {
     color: white;
     font: 'Trebuchet';
     font-size: large;
-
 }
-
 
 body {
     height: 100%;
