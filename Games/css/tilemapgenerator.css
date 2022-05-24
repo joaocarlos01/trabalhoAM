@@ -34,7 +34,7 @@ aside div,
 #relva, 
 .relva {
     display: inline-block;
-    background-image: url("imagens/Camada 1/relva.png");
+    background-image: url("../Imagens/Camada 1/relva.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -42,7 +42,7 @@ aside div,
 #terra,
 .terra {
     display: inline-block;
-    background-image: url("imagens/Camada 1/terra.png");
+    background-image: url("../Imagens/Camada 1/terra.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -50,7 +50,7 @@ aside div,
 #neve,
 .neve {
     display: inline-block;
-    background-image: url("imagens/Camada 1/neve.png");
+    background-image: url("../Imagens/Camada 1/neve.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -58,7 +58,7 @@ aside div,
 #pedra,
 .pedra {
     display: inline-block;
-    background-image: url("imagens/Camada 1/pedra.png");
+    background-image: url("../Imagens/Camada 1/pedra.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -66,7 +66,7 @@ aside div,
 #agua,
 .agua {
     display: inline-block;
-    background-image: url("imagens/Camada 1/agua.png");
+    background-image: url("../Imagens/Camada 1/agua.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -74,7 +74,7 @@ aside div,
 #arbustroConjunto,
 .arbustroConjunto {
     display: inline-block;
-    background-image: url("imagens/Camada 2/arbustro_conjunto.png");
+    background-image: url("../Imagens/Camada 2/arbustro_conjunto.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -82,7 +82,7 @@ aside div,
 #arbustro,
 .arbustro {
     display: inline-block;
-    background-image: url("imagens/Camada 2/arbustro_natural.png");
+    background-image: url("../Imagens/Camada 2/arbustro_natural.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -90,7 +90,7 @@ aside div,
 #arbustroNeve,
 .arbustroNeve {
     display: inline-block;
-    background-image: url("imagens/Camada 2/arbustro_neve.png");
+    background-image: url("../Imagens/Camada 2/arbustro_neve.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -98,7 +98,7 @@ aside div,
 #arbustroConjuntoOutono,
 .arbustroConjuntoOutono {
     display: inline-block;
-    background-image: url("imagens/Camada 2/arbustro_outono.png");
+    background-image: url("../Imagens/Camada 2/arbustro_outono.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -106,7 +106,7 @@ aside div,
 #calhau,
 .calhau {
     display: inline-block;
-    background-image: url("imagens/Camada 2/calhau.png");
+    background-image: url("../Imagens/Camada 2/calhau.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -114,7 +114,7 @@ aside div,
 #calhauNeve,
 .calhauNeve {
     display: inline-block;
-    background-image: url("imagens/Camada 2/calhau_neve.png");
+    background-image: url("../Imagens/Camada 2/calhau_neve.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -122,7 +122,7 @@ aside div,
 #cercaNeve,
 .cercaNeve {
     display: inline-block;
-    background-image: url("imagens/Camada 2/cerca_neve.png");
+    background-image: url("../Imagens/Camada 2/cerca_neve.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -130,7 +130,7 @@ aside div,
 #cogumelos,
 .gogumelos {
     display: inline-block;
-    background-image: url("imagens/Camada 2/cogumelos.png");
+    background-image: url("../Imagens/Camada 2/cogumelos.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -138,7 +138,7 @@ aside div,
 #folhas,
 .folhas {
     display: inline-block;
-    background-image: url("imagens/Camada 2/folhas_arvore_natural.png");
+    background-image: url("../Imagens/Camada 2/folhas_arvore_natural.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -146,7 +146,7 @@ aside div,
 #folhasNeve,
 .folhasNeve {
     display: inline-block;
-    background-image: url("imagens/Camada 2/folhas_neve.png");
+    background-image: url("../Imagens/Camada 2/folhas_neve.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -154,7 +154,7 @@ aside div,
 #folhasOutono,
 .folhasOutono {
     display: inline-block;
-    background-image: url("imagens/Camada 2/folhas_outono.png");
+    background-image: url("../Imagens/Camada 2/folhas_outono.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -162,7 +162,7 @@ aside div,
 #raiz,
 .raiz {
     display: inline-block;
-    background-image: url("imagens/Camada 2/raiz.png");
+    background-image: url("../Imagens/Camada 2/raiz.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -170,7 +170,7 @@ aside div,
 #topoSeco,
 .topoSeco {
     display: inline-block;
-    background-image: url("imagens/Camada 2/topo_seco.png");
+    background-image: url("../Imagens/Camada 2/topo_seco.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -178,7 +178,7 @@ aside div,
 #tronco,
 .tronco {
     display: inline-block;
-    background-image: url("imagens/Camada 2/tronco_arvore_natural.png");
+    background-image: url("../Imagens/Camada 2/tronco_arvore_natural.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -186,7 +186,7 @@ aside div,
 #troncoNeve,
 .troncoNeve {
     display: inline-block;
-    background-image: url("imagens/Camada 2/tronco_neve.png");
+    background-image: url("../Imagens/Camada 2/tronco_neve.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -194,7 +194,7 @@ aside div,
 #troncoOutono,
 .troncoOutono {
     display: inline-block;
-    background-image: url("imagens/Camada 2/tronco_outono.png");
+    background-image: url("../Imagens/Camada 2/tronco_outono.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
@@ -202,7 +202,7 @@ aside div,
 #troncoSeco,
 .troncoSeco {
     display: inline-block;
-    background-image: url("imagens/Camada 2/tronco_seco.png");
+    background-image: url("../Imagens/Camada 2/tronco_seco.png");
     padding: 1rem 1rem;
     vertical-align: middle;
 }
