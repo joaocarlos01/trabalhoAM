@@ -26,5 +26,4 @@ body {
     background: linear-gradient(to right, #133133, #AAAAAA);
     font-family: 'Trebuchet MS';
     cursor: crosshair;
-    overflow: hidden;
 }

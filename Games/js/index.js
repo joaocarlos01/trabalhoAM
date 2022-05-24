@@ -154,6 +154,7 @@ class Player extends Sprite {
         this.placas = 0;
     }
 
+
     colisaoBlocos(x, y) {
         if (camada1[y][x] === 44) {
             return true;
@@ -197,7 +198,6 @@ class Player extends Sprite {
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
 
-
         if (this.colisaoPlaca(posicaoX, posicaoY)) {
             this.placas++;
             camada3[posicaoY][posicaoX] = 0;
@@ -210,10 +210,15 @@ class Player extends Sprite {
         if (this.colisaoEnemy(posicaoX, posicaoY)) {
             this.vida -= 25;
             idVida.innerHTML = this.vida;
+            if (this.vida == 0) {
+                alert("morreu");
+                location.reload();
+            }
         }
 
         if (teclasEmBaixo['ArrowLeft']) {
             posicaoX--;
+
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
@@ -517,7 +522,6 @@ Placa.load("Imagens/Camada 3/placa.png");
 PlacaNeve.load("Imagens/Camada 3/placa_neve.png");
 Player.load("imagens/player.png");
 Enemy.load("imagens/enemy.png");
-
 
 
 const fps = 24;
