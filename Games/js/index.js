@@ -174,6 +174,24 @@ class Player extends Sprite {
         };
     }
 
+    colisaoInicioMapa(x, y) {
+        if (camada1[y][x] == 504) {
+
+            return true;
+        } else {
+            return false
+        };
+    }
+
+    colisaoFimMapa(x, y) {
+        if (camada1[y][x] == 505) {
+
+            return true;
+        } else {
+            return false
+        };
+    }
+
     colisaoPlaca(x, y) {
         if (camada3[y][x] == 3 || camada3[y][x] == 183) {
             return true;
@@ -183,13 +201,26 @@ class Player extends Sprite {
     }
 
     colisaoEnemy(x, y) {
-        if (enemy.x == player.x && enemy.y == player.y) {
+        if (
+            enemy.x == player.x && enemy.y == player.y ||
+            enemy2.x == player.x && enemy2.y == player.y ||
+            enemy3.x == player.x && enemy3.y == player.y ||
+            enemy4.x == player.x && enemy4.y == player.y ||
+            enemy5.x == player.x && enemy5.y == player.y ||
+            enemy6.x == player.x && enemy6.y == player.y ||
+            enemy7.x == player.x && enemy7.y == player.y ||
+            enemy8.x == player.x && enemy8.y == player.y ||
+            enemy9.x == player.x && enemy9.y == player.y ||
+            enemy10.x == player.x && enemy10.y == player.y ||
+            enemy11.x == player.x && enemy11.y == player.y ) {
 
             return true;
         } else {
             return false
         };
     }
+
+    
 
     update() {
 
@@ -212,7 +243,6 @@ class Player extends Sprite {
             camada3[posicaoY][posicaoX] = 0;
             console.log("Colisão")
             idScore.innerHTML = player.placas + " / 11";
-            console.log(this.placas)
             if (this.placas == 11) {
                 ganhar = true;
             }
@@ -228,6 +258,20 @@ class Player extends Sprite {
                 location.reload();
             }
 
+        }
+        if(this.colisaoInicioMapa (posicaoX, posicaoY) ){
+                this.x = 64;
+                this.y = 64;
+        }
+
+        if(this.colisaoFimMapa (posicaoX, posicaoY) ){
+            if(this.placas == 11){
+                alert("WIN");
+            }
+            else{
+                this.x = 32;
+                this.y = 32;
+            }
         }
 
 
@@ -341,6 +385,14 @@ class Tilemap extends GameObject {
 
         if (posicaoPeca == 41) {
             this.arrayPecas.push(new Relva(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 504) {
+            this.arrayPecas.push(new Relva(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 505) {
+            this.arrayPecas.push(new RelvaClara(coluna * 32, fila * 32, 32, 32));
         }
 
         if (posicaoPeca == 221) {
@@ -478,6 +530,10 @@ class Tilemap extends GameObject {
         }
     }
 
+    update(){
+        this.draw();
+    }
+
 }
 
 //load do player
@@ -549,7 +605,7 @@ window.addEventListener('assetLoad', (e) => {
 
 
 camada1 = [
-    [44, 41, 41, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44],
+    [44, 504, 504, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44],
     [44, 41, 41, 44, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 222, 222, 222, 222, 44, 221, 221, 221, 221, 221, 223, 223, 223, 223, 223, 223, 43, 43, 44, 221, 221, 221, 44],
     [44, 41, 41, 44, 41, 44, 41, 41, 42, 66, 67, 68, 42, 42, 42, 42, 42, 223, 223, 223, 223, 44, 223, 221, 221, 221, 221, 221, 221, 221, 222, 223, 223, 43, 221, 44, 221, 221, 221, 44],
     [44, 41, 41, 44, 44, 44, 44, 41, 42, 86, 41, 88, 42, 66, 67, 68, 42, 223, 223, 223, 223, 44, 44, 44, 44, 44, 44, 44, 223, 223, 222, 223, 223, 43, 43, 44, 221, 44, 221, 44],
@@ -576,8 +632,8 @@ camada1 = [
     [44, 391, 391, 391, 44, 44, 44, 44, 391, 43, 43, 391, 43, 43, 43, 43, 43, 43, 43, 43, 42, 42, 42, 42, 43, 43, 43, 43, 44, 44, 391, 391, 391, 391, 44, 44, 44, 44, 391, 44],
     [44, 391, 44, 44, 44, 391, 391, 44, 391, 43, 43, 391, 391, 43, 43, 43, 43, 43, 43, 43, 43, 42, 42, 42, 43, 43, 43, 44, 44, 391, 391, 44, 44, 391, 391, 391, 44, 391, 391, 44],
     [44, 391, 44, 391, 44, 391, 391, 44, 391, 43, 43, 44, 44, 44, 44, 44, 391, 391, 391, 391, 43, 43, 42, 42, 43, 43, 44, 43, 43, 43, 391, 391, 44, 391, 44, 391, 44, 391, 391, 44],
-    [44, 391, 44, 391, 44, 391, 391, 44, 44, 43, 43, 44, 391, 391, 391, 44, 44, 391, 391, 44, 43, 43, 43, 43, 43, 43, 44, 43, 43, 43, 43, 43, 44, 43, 44, 391, 44, 391, 391, 391],
-    [44, 391, 391, 391, 391, 391, 391, 391, 44, 43, 43, 44, 391, 391, 391, 391, 391, 391, 391, 44, 391, 43, 43, 43, 43, 44, 43, 43, 43, 43, 43, 43, 44, 43, 44, 43, 44, 391, 391, 391],
+    [44, 391, 44, 391, 44, 391, 391, 44, 44, 43, 43, 44, 391, 391, 391, 44, 44, 391, 391, 44, 43, 43, 43, 43, 43, 43, 44, 43, 43, 43, 43, 43, 44, 43, 44, 391, 44, 391, 391, 505],
+    [44, 391, 391, 391, 391, 391, 391, 391, 44, 43, 43, 44, 391, 391, 391, 391, 391, 391, 391, 44, 391, 43, 43, 43, 43, 44, 43, 43, 43, 43, 43, 43, 44, 43, 44, 43, 44, 391, 391, 505],
     [44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44]
 ];
 
@@ -650,7 +706,7 @@ camada3 = [
 tilemap = new Tilemap(0, 0, canvas.width, canvas.height, camada1);
 tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
 tilemap3 = new Tilemap(0, 0, canvas.width, canvas.height, camada3);
-player = new Player(32, 0, 32, 32);
+player = new Player(32, 32, 32, 32);
 enemy = new Enemy(96, 384, 32, 32);
 enemy2 = new Enemy(128, 32, 32, 32);
 enemy3 = new Enemy(32, 768, 32, 32);
