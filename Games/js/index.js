@@ -288,7 +288,7 @@ class Enemy extends Sprite {
 
     }
     colisaoBlocos(x, y) {
-        if (camada1[y][x] == 44) {
+        if (camada1[y][x] == 44 || camada1[y][x] == 42) {
             return true;
         } else if (camada2[y][x] == 21 || camada2[y][x] == 376 || camada2[y][x] == 378 || camada2[y][x] == 184 || camada2[y][x] == 203 || camada2[y][x] == 23 || camada2[y][x] == 379) {
             return true;
@@ -534,7 +534,7 @@ var camada3 = [];
 let tilemap, tilemap2, tilemap3;
 const numAssets = 10;
 let numAssetsLoaded = 0;
-var player, enemy, zombie;
+var player, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11 ;
 var idScore, idVida;
 
 window.addEventListener('assetLoad', (e) => {
@@ -652,6 +652,16 @@ tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
 tilemap3 = new Tilemap(0, 0, canvas.width, canvas.height, camada3);
 player = new Player(32, 0, 32, 32);
 enemy = new Enemy(96, 384, 32, 32);
+enemy2 = new Enemy(128, 32, 32, 32);
+enemy3 = new Enemy(32, 768, 32, 32);
+enemy4 = new Enemy(416, 896, 32, 32);
+enemy5 = new Enemy(640, 352, 32, 32);
+enemy6 = new Enemy(640, 64, 32, 32);
+enemy7 = new Enemy(960, 96, 32, 32);
+enemy8 = new Enemy(1248, 224, 32, 32);
+enemy9 = new Enemy(1088, 640, 32, 32);
+enemy10 = new Enemy(1248, 416, 32, 32);
+enemy11 = new Enemy(792, 736, 32, 32);
 idScore = document.getElementById("idScore");
 idVida = document.getElementById("idVida");
 idVida.innerHTML = 100;
@@ -675,6 +685,26 @@ function animate(time) {
         player.update();
         enemy.draw();
         enemy.update();
+        enemy2.draw();
+        enemy2.update();
+        enemy3.draw();
+        enemy3.update();
+        enemy4.draw();
+        enemy4.update();
+        enemy5.draw();
+        enemy5.update();
+        enemy6.draw();
+        enemy6.update();
+        enemy7.draw();
+        enemy7.update();
+        enemy8.draw();
+        enemy8.update();
+        enemy9.draw();
+        enemy9.update();
+        enemy10.draw();
+        enemy10.update();
+        enemy11.draw();
+        enemy11.update();
         tilemap2.draw();
         tilemap3.draw();
 
