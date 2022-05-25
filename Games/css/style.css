@@ -45,6 +45,58 @@ particle {
     transform: scale(1.02) perspective(1px)
 }
 
+#colunasSlider,
+#filasSlider {
+    -webkit-appearance: none;
+    background: whitesmoke;
+    width: 50%;
+    border-radius: 20px;
+    outline: none;
+    opacity: 1;
+}
+
+#colunasSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #28A745;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#filasSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #28A745;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#colunasSlider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #0f2027;
+    cursor: pointer;
+}
+
+#filasSlider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #0f2027;
+    cursor: pointer;
+}
+
+#colunasSlider:hover {
+    opacity: 0.9;
+    transform: scale(1.02) perspective(1px);
+}
+
+#filasSlider:hover {
+    opacity: 0.9;
+    transform: scale(1.02) perspective(1px);
+}
+
 #tamanhoImg,
 #quantos,
 #myRange {

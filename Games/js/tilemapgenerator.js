@@ -4,8 +4,13 @@ const mainTiles = document.querySelectorAll("div > div");
 const map = document.querySelector("#map");
 const btnSave = document.querySelector("#export");
 const uploader = document.querySelector("#uploader");
-const filas = document.getElementById("idFilas");
-const colunas = document.getElementById("idColunas");
+
+var filasSlider = document.getElementById("filasSlider");
+var filasText = document.getElementById("filasText");
+
+var colunasSlider = document.getElementById("colunasSlider");
+var colunasText = document.getElementById("colunasText");
+
 const relva = document.getElementById("relva");
 const terra = document.getElementById("terra");
 const neve = document.getElementById("neve");
@@ -14,23 +19,29 @@ const agua = document.getElementById("agua");
 const botao = document.getElementById("idMedidas");
 const reset = document.getElementById("idReset");
 
-var numRows = filas.value , numCols = colunas.value;
+$("#idReset,#blocos,#export").hide();
 
-filas.addEventListener("change", () => {
-    numRows = filas.value;
-});
+filasText.innerHTML = filasSlider.value;
+filasSlider.oninput = function() {
+    filasText.innerHTML = this.value;
+}
 
-colunas.addEventListener("change", () => {
-    numCols = colunas.value; 
-});
+colunasText.innerHTML = colunasSlider.value;
+colunasSlider.oninput = function() {
+    colunasText.innerHTML = this.value;
+}
 
-botao.onclick =function atualizarMedidas (){
-    map.style.width = 32* numCols +"px";
-    map.style.heigth = 32* numRows + "px";
-    createGrid(numRows, numCols);
+
+
+botao.onclick = function atualizarMedidas() {
+    $("#row1, #row2,#colunasSlider, #filasSlider, #colunasText, #filasText, #idMedidas, #valor, #valor3").hide();
+    $("#export,#idReset,#blocos").show();
+
+    map.style.width = 32 * `${colunasSlider.value}` + "px";
+    map.style.heigth = 32 * `${filasSlider.value}` + "px";
+
+    createGrid(colunasSlider.value, filasSlider.value);
     setUpDragEvents();
-    botao.disabled = true;
-    reset.disabled = false;
 }
 
 
@@ -41,6 +52,8 @@ btnSave.addEventListener("click", (event) => {
 });
 
 reset.addEventListener("click", (event) => {
+    $("#row1, #row2, #export,#colunasSlider, #filasSlider, #colunasText, #filasText, #idMedidas, #valor, #valor3").show();
+    $("#export,#idReset,#blocos").show();
     location.reload();
 });
 
@@ -51,6 +64,7 @@ function createGrid(numRows, numCols) {
     for (let i = 1; i <= numCells; i++) {
         let newCell = document.createElement("div");
         newCell.className = "cell";
+        newCell.style.border = "1px solid black";
         map.appendChild(newCell);
     }
 }
@@ -96,9 +110,9 @@ function dragLeave(event) {
 }
 
 function drop(event) {
-    const slot = event.target.className.includes("cell")
-        ? event.target
-        : event.target.parentElement;
+    const slot = event.target.className.includes("cell") ?
+        event.target :
+        event.target.parentElement;
     slot.classList.remove("hover");
 
     const id = event.dataTransfer.getData("uuid");
@@ -120,7 +134,7 @@ function drop(event) {
 function cloneNodeElement(node) {
     const element = node.cloneNode();
     const uniqueId = Date.now() * Math.random();
-    element.className = element.id;     
+    element.className = element.id;
     element.id = uniqueId;
     element.addEventListener("dragstart", dragStart);
     element.addEventListener("contextmenu", (event) => {
@@ -135,12 +149,13 @@ function cloneNodeElement(node) {
 function generateMapJSON() {
     const cells = map.querySelectorAll(".cell");
 
+    console.log(cells);
     let tiles = {};
 
     let index = 0;
-    for (let i = 0; i < numRows; i++) {
+    for (let i = 0; i < filasSlider.value; i++) {
         let row = {};
-        for (let j = 0; j < numCols; j++) {
+        for (let j = 0; j < colunasSlider.value; j++) {
             const cell = cells[index];
             const images = cell.querySelectorAll("div");
             const imagesDataIndex = getImageDataIndex(images);
@@ -171,4 +186,3 @@ function downloadFile(content) {
     anchor.download = `map_${uuid}.json`;
     anchor.click();
 }
-
