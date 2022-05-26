@@ -247,48 +247,48 @@ class Player extends Sprite {
             var qtd =0;
            
             if(camada3[posicaoY][posicaoX] == 600){
-                tilemap3.arrayPecas.splice(0,1);
+                tilemap3.arrayPecas.splice(0,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 601){
-                tilemap3.arrayPecas.splice(1,1);
+                tilemap3.arrayPecas.splice(1,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 602){
-                tilemap3.arrayPecas.splice(2,1);
+                tilemap3.arrayPecas.splice(2,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 603){
-                tilemap3.arrayPecas.splice(3,1);
+                tilemap3.arrayPecas.splice(3,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 604){
-                tilemap3.arrayPecas.splice(4,1);
+                tilemap3.arrayPecas.splice(4,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 605){
-                tilemap3.arrayPecas.splice(5,1);
+                tilemap3.arrayPecas.splice(5,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 606){
-                tilemap3.arrayPecas.splice(6,1);
+                tilemap3.arrayPecas.splice(6,1,0);
               
             }
             if(camada3[posicaoY][posicaoX] == 607){
-                tilemap3.arrayPecas.splice(7,1);
+                tilemap3.arrayPecas.splice(7,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 608){
-                tilemap3.arrayPecas.splice(8,1);
+                tilemap3.arrayPecas.splice(8,1,0);
                 
             }
             if(camada3[posicaoY][posicaoX] == 609){
-                tilemap3.arrayPecas.splice(9,1);
+                tilemap3.arrayPecas.splice(9,1,0);
                 
             }
 
             if(camada3[posicaoY][posicaoX] == 610){
-                tilemap3.arrayPecas.splice(10,1);
+                tilemap3.arrayPecas.splice(10,1,0);
                 
             }
             console.log(tilemap3.arrayPecas)
@@ -607,20 +607,18 @@ class Tilemap extends GameObject {
             this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
         }
 
-
-        if (posicaoPeca == 999) {
-            this.arrayPecas.push(new Vazio(coluna * 32, fila * 32, 32, 32));
-        }
-
-
-
     }
 
     draw() {
 
         for (var i = 0; i < this.arrayPecas.length; i++) {
+            if(this.arrayPecas[i] === 0){
+                
+            }
+            else {
             var peca = this.arrayPecas[i]
             peca.draw();
+            }
         }
     }
 
