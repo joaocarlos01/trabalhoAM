@@ -144,6 +144,8 @@ class PlacaNeve extends Tile {
 }
 
 
+
+
 class Player extends Sprite {
     //Construtor de um jogador
     constructor(x, y, width, height) {
@@ -193,7 +195,9 @@ class Player extends Sprite {
     }
 
     colisaoPlaca(x, y) {
-        if (camada3[y][x] == 3 || camada3[y][x] == 183) {
+        if (camada3[y][x] == 600 || camada3[y][x] == 601 || camada3[y][x] == 602 || camada3[y][x] == 603 || camada3[y][x] == 604 ||
+            camada3[y][x] == 605 || camada3[y][x] == 606 || camada3[y][x] == 607|| camada3[y][x] == 608 || camada3[y][x] == 609 ||
+            camada3[y][x] == 610 ) {
             return true;
         } else {
             return false
@@ -240,8 +244,59 @@ class Player extends Sprite {
 
         if (this.colisaoPlaca(posicaoX, posicaoY)) {
             this.placas++;
-            camada3[posicaoY][posicaoX] = 0;
-            console.log("Colisão")
+            var qtd =0;
+           
+            if(camada3[posicaoY][posicaoX] == 600){
+                tilemap3.arrayPecas.splice(0,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 601){
+                tilemap3.arrayPecas.splice(1,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 602){
+                tilemap3.arrayPecas.splice(2,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 603){
+                tilemap3.arrayPecas.splice(3,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 604){
+                tilemap3.arrayPecas.splice(4,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 605){
+                tilemap3.arrayPecas.splice(5,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 606){
+                tilemap3.arrayPecas.splice(6,1);
+              
+            }
+            if(camada3[posicaoY][posicaoX] == 607){
+                tilemap3.arrayPecas.splice(7,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 608){
+                tilemap3.arrayPecas.splice(8,1);
+                
+            }
+            if(camada3[posicaoY][posicaoX] == 609){
+                tilemap3.arrayPecas.splice(9,1);
+                
+            }
+
+            if(camada3[posicaoY][posicaoX] == 610){
+                tilemap3.arrayPecas.splice(10,1);
+                
+            }
+            console.log(tilemap3.arrayPecas)
+            camada3[posicaoY][posicaoX] = 999;
+            
+            
+           
+            
             idScore.innerHTML = player.placas + " / 11";
             if (this.placas == 11) {
                 ganhar = true;
@@ -326,7 +381,6 @@ class Player extends Sprite {
 class Enemy extends Sprite {
     constructor(x, y, width, height) {
         super(x, y, width, height);
-        //A velocidade de um jogador é 32
         this.speed = 8;
         this.vida = 100;
 
@@ -511,13 +565,53 @@ class Tilemap extends GameObject {
             this.arrayPecas.push(new IlhaBaixoDireita(coluna * 32, fila * 32, 32, 32));
         }
 
-        if (posicaoPeca == 3) {
+        if (posicaoPeca == 600) {
+            this.arrayPecas.push(new PlacaNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 601) {
+            this.arrayPecas.push(new PlacaNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 602) {
             this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
         }
 
-        if (posicaoPeca == 183) {
+        if (posicaoPeca == 603) {
             this.arrayPecas.push(new PlacaNeve(coluna * 32, fila * 32, 32, 32));
         }
+
+        if (posicaoPeca == 604) {
+            this.arrayPecas.push(new PlacaNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 605) {
+            this.arrayPecas.push(new PlacaNeve(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 606) {
+            this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
+        }
+        if (posicaoPeca == 607) {
+            this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
+        }
+        if (posicaoPeca == 608) {
+            this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 609) {
+            this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
+        }
+
+        if (posicaoPeca == 610) {
+            this.arrayPecas.push(new Placa(coluna * 32, fila * 32, 32, 32));
+        }
+
+
+        if (posicaoPeca == 999) {
+            this.arrayPecas.push(new Vazio(coluna * 32, fila * 32, 32, 32));
+        }
+
 
 
     }
@@ -672,8 +766,8 @@ camada2 = [
 
 camada3 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 183, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 183, ],
-    [0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 183, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 601, ],
+    [0, 0, 0, 0, 602, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 603, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -681,9 +775,9 @@ camada3 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 183, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 183, 0],
-    [0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 604, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 605, 0],
+    [0, 0, 606, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -694,12 +788,12 @@ camada3 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 607, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 608, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 609, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 610, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
@@ -721,6 +815,10 @@ enemy11 = new Enemy(792, 736, 32, 32);
 idScore = document.getElementById("idScore");
 idVida = document.getElementById("idVida");
 idVida.innerHTML = 100;
+var jogo = document.getElementById("idJogo");
+var botao = document.getElementById("idBotao");
+
+
 
 
 function startGame() {
