@@ -1,6 +1,7 @@
 canvas.width = 40 * 32;
 canvas.height = 30 * 32;
 
+
 class Tile extends Sprite {
     constructor(x, y, width, height) {
         super(x, y, width, height);
@@ -322,6 +323,7 @@ class Player extends Sprite {
         if(this.colisaoFimMapa (posicaoX, posicaoY) ){
             if(this.placas == 11){
                 alert("WIN");
+                location.reload();
             }
             else{
                 this.x = 32;
@@ -388,9 +390,8 @@ class Enemy extends Sprite {
     colisaoBlocos(x, y) {
         if (camada1[y][x] == 44 || camada1[y][x] == 42) {
             return true;
-        } else if (camada2[y][x] == 21 || camada2[y][x] == 376 || camada2[y][x] == 378 || camada2[y][x] == 184 || camada2[y][x] == 203 || camada2[y][x] == 23 || camada2[y][x] == 379) {
-            return true;
-        } else {
+        } 
+         else {
             return false
         }
     }
@@ -405,13 +406,13 @@ class Enemy extends Sprite {
 
         if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
             this.speed = -(this.speed);
+            
         }
         this.x += this.speed;
 
     }
 
 }
-
 
 class Tilemap extends GameObject {
 
@@ -823,6 +824,7 @@ function startGame() {
 
     timeLastFrame = performance.now();
     animate(performance.now());
+  
 }
 
 function animate(time) {
@@ -862,5 +864,6 @@ function animate(time) {
 
         acumulatedTimeBetweenFrames = 0;
     }
+   
 
 }
