@@ -697,6 +697,12 @@ let numAssetsLoaded = 0;
 var player, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11;
 var idScore, idVida;
 
+document.addEventListener("dblclick", ()=>{
+document.documentElement.requestFullscreen().catch((e) => {
+    console.log(e);
+});
+});
+
 window.addEventListener('assetLoad', (e) => {
 
     console.log("Asset Loaded", e.detail);
