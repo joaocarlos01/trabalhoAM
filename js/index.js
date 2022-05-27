@@ -392,7 +392,7 @@ class Enemy extends AnimatedSprite {
 
     }
     colisaoBlocos(x, y) {
-        if (camada1[y][x] == 44 || camada1[y][x] == 42) {
+        if (camada1[y][x] == 44 || camada1[y][x] == 42 || camada2[y][x] == 201 || camada2[y][x] == 379) {
             return true;
         } else {
             return false
@@ -407,16 +407,19 @@ class Enemy extends AnimatedSprite {
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
 
-        if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
-            this.speed = -(this.speed);
-
-        }
         if(this.speed > 0 ){
             super.animarDireitaZombie();
+            posicaoX ++;
         }
         else{
             super.animarEsquerdaZombie();
+            posicaoX--
         }
+        
+        if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
+         this.speed = -(this.speed);
+        }
+      
         this.x += this.speed;
 
     }
