@@ -197,8 +197,8 @@ class Player extends Sprite {
 
     colisaoPlaca(x, y) {
         if (camada3[y][x] == 600 || camada3[y][x] == 601 || camada3[y][x] == 602 || camada3[y][x] == 603 || camada3[y][x] == 604 ||
-            camada3[y][x] == 605 || camada3[y][x] == 606 || camada3[y][x] == 607|| camada3[y][x] == 608 || camada3[y][x] == 609 ||
-            camada3[y][x] == 610 ) {
+            camada3[y][x] == 605 || camada3[y][x] == 606 || camada3[y][x] == 607 || camada3[y][x] == 608 || camada3[y][x] == 609 ||
+            camada3[y][x] == 610) {
             return true;
         } else {
             return false
@@ -217,7 +217,7 @@ class Player extends Sprite {
             enemy8.x == player.x && enemy8.y == player.y ||
             enemy9.x == player.x && enemy9.y == player.y ||
             enemy10.x == player.x && enemy10.y == player.y ||
-            enemy11.x == player.x && enemy11.y == player.y ) {
+            enemy11.x == player.x && enemy11.y == player.y) {
 
             return true;
         } else {
@@ -225,7 +225,7 @@ class Player extends Sprite {
         };
     }
 
-    
+
 
     update() {
 
@@ -245,59 +245,59 @@ class Player extends Sprite {
 
         if (this.colisaoPlaca(posicaoX, posicaoY)) {
             this.placas++;
-            var qtd =0;
-           
-            if(camada3[posicaoY][posicaoX] == 600){
-                tilemap3.arrayPecas.splice(0,1,0);
-                
+            var qtd = 0;
+
+            if (camada3[posicaoY][posicaoX] == 600) {
+                tilemap3.arrayPecas.splice(0, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 601){
-                tilemap3.arrayPecas.splice(1,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 601) {
+                tilemap3.arrayPecas.splice(1, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 602){
-                tilemap3.arrayPecas.splice(2,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 602) {
+                tilemap3.arrayPecas.splice(2, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 603){
-                tilemap3.arrayPecas.splice(3,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 603) {
+                tilemap3.arrayPecas.splice(3, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 604){
-                tilemap3.arrayPecas.splice(4,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 604) {
+                tilemap3.arrayPecas.splice(4, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 605){
-                tilemap3.arrayPecas.splice(5,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 605) {
+                tilemap3.arrayPecas.splice(5, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 606){
-                tilemap3.arrayPecas.splice(6,1,0);
-              
+            if (camada3[posicaoY][posicaoX] == 606) {
+                tilemap3.arrayPecas.splice(6, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 607){
-                tilemap3.arrayPecas.splice(7,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 607) {
+                tilemap3.arrayPecas.splice(7, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 608){
-                tilemap3.arrayPecas.splice(8,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 608) {
+                tilemap3.arrayPecas.splice(8, 1, 0);
+
             }
-            if(camada3[posicaoY][posicaoX] == 609){
-                tilemap3.arrayPecas.splice(9,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 609) {
+                tilemap3.arrayPecas.splice(9, 1, 0);
+
             }
 
-            if(camada3[posicaoY][posicaoX] == 610){
-                tilemap3.arrayPecas.splice(10,1,0);
-                
+            if (camada3[posicaoY][posicaoX] == 610) {
+                tilemap3.arrayPecas.splice(10, 1, 0);
+
             }
             console.log(tilemap3.arrayPecas)
             camada3[posicaoY][posicaoX] = 999;
-            
-            
-           
-            
+
+
+
+
             idScore.innerHTML = player.placas + " / 11";
             if (this.placas == 11) {
                 ganhar = true;
@@ -315,17 +315,16 @@ class Player extends Sprite {
             }
 
         }
-        if(this.colisaoInicioMapa (posicaoX, posicaoY) ){
-                this.x = 64;
-                this.y = 64;
+        if (this.colisaoInicioMapa(posicaoX, posicaoY)) {
+            this.x = 64;
+            this.y = 64;
         }
 
-        if(this.colisaoFimMapa (posicaoX, posicaoY) ){
-            if(this.placas == 11){
+        if (this.colisaoFimMapa(posicaoX, posicaoY)) {
+            if (this.placas == 11) {
                 alert("WIN");
                 location.reload();
-            }
-            else{
+            } else {
                 this.x = 32;
                 this.y = 32;
             }
@@ -390,8 +389,7 @@ class Enemy extends Sprite {
     colisaoBlocos(x, y) {
         if (camada1[y][x] == 44 || camada1[y][x] == 42) {
             return true;
-        } 
-         else {
+        } else {
             return false
         }
     }
@@ -406,7 +404,7 @@ class Enemy extends Sprite {
 
         if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
             this.speed = -(this.speed);
-            
+
         }
         this.x += this.speed;
 
@@ -613,17 +611,16 @@ class Tilemap extends GameObject {
     draw() {
 
         for (var i = 0; i < this.arrayPecas.length; i++) {
-            if(this.arrayPecas[i] === 0){
-                
-            }
-            else {
-            var peca = this.arrayPecas[i]
-            peca.draw();
+            if (this.arrayPecas[i] === 0) {
+
+            } else {
+                var peca = this.arrayPecas[i]
+                peca.draw();
             }
         }
     }
 
-    update(){
+    update() {
         this.draw();
     }
 
@@ -667,8 +664,8 @@ IlhaDireita.load("Imagens/Camada 2/ilha_direita.png");
 IlhaEsquerda.load("Imagens/Camada 2/ilha_esquerda.png");
 Placa.load("Imagens/Camada 3/placa.png");
 PlacaNeve.load("Imagens/Camada 3/placa_neve.png");
-Player.load("imagens/player.png");
-Enemy.load("imagens/enemy.png");
+Player.load("Imagens/player.png");
+Enemy.load("Imagens/enemy.png");
 
 
 const fps = 16;
@@ -683,7 +680,7 @@ var camada3 = [];
 let tilemap, tilemap2, tilemap3;
 const numAssets = 10;
 let numAssetsLoaded = 0;
-var player, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11 ;
+var player, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11;
 var idScore, idVida;
 
 window.addEventListener('assetLoad', (e) => {
@@ -824,7 +821,7 @@ function startGame() {
 
     timeLastFrame = performance.now();
     animate(performance.now());
-  
+
 }
 
 function animate(time) {
@@ -864,6 +861,6 @@ function animate(time) {
 
         acumulatedTimeBetweenFrames = 0;
     }
-   
+
 
 }
