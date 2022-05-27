@@ -384,7 +384,7 @@ class Player extends AnimatedSprite {
 
 }
 
-class Enemy extends Sprite {
+class Enemy extends AnimatedSprite {
     constructor(x, y, width, height) {
         super(x, y, width, height);
         this.speed = 8;
@@ -410,6 +410,12 @@ class Enemy extends Sprite {
         if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
             this.speed = -(this.speed);
 
+        }
+        if(this.speed > 0 ){
+            super.animarDireitaZombie();
+        }
+        else{
+            super.animarEsquerdaZombie();
         }
         this.x += this.speed;
 
@@ -670,7 +676,7 @@ IlhaEsquerda.load("Imagens/Camada 2/ilha_esquerda.png");
 Placa.load("Imagens/Camada 3/placa.png");
 PlacaNeve.load("Imagens/Camada 3/placa_neve.png");
 Player.load("Imagens/player_sprite.png",16,4);
-Enemy.load("Imagens/enemy.png");
+Enemy.load("Imagens/zombie_sprite.png",16,4);
 
 
 const fps = 10;

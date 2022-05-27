@@ -86,6 +86,38 @@ class AnimatedSprite extends Sprite {
 
     }
 
+    animarEsquerdaZombie(){
+
+        this.currentFrame++;
+
+        if (this.currentFrame > this.constructor.numberFrames)
+            this.currentFrame = 1;
+
+        let deltaX = (this.currentFrame - 1)% this.constructor.numberFramesPerRow;
+        let deltaY = 48;
+
+      
+        this.sx = deltaX * this.constructor.slice.width;
+        this.sy = deltaY ;
+
+    }
+
+    animarDireitaZombie(){
+
+        this.currentFrame++;
+
+        if (this.currentFrame > this.constructor.numberFrames)
+            this.currentFrame = 1;
+
+        let deltaX = (this.currentFrame - 1)% this.constructor.numberFramesPerRow;
+        let deltaY = 98;
+
+      
+        this.sx = deltaX * this.constructor.slice.width;
+        this.sy = deltaY ;
+
+    }
+
     animarDireita(){
 
         this.currentFrame++;
@@ -147,6 +179,8 @@ class AnimatedSprite extends Sprite {
         this.sx = deltaX * this.constructor.slice.width;
         this.sy = deltaY * this.constructor.slice.height;
     }
+
+
 
 
     draw() {
