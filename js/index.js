@@ -238,8 +238,8 @@ class Player extends Sprite {
             this.vida -= 10;
             idVida.innerHTML = this.vida;
             if (this.vida <= 0) {
-                alert("morreu");
                 location.reload();
+                alert("morreu");
             }
         }
 
