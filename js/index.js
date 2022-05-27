@@ -147,7 +147,7 @@ class PlacaNeve extends Tile {
 
 
 
-class Player extends Sprite {
+class Player extends AnimatedSprite {
     //Construtor de um jogador
     constructor(x, y, width, height) {
         super(x, y, width, height);
@@ -230,6 +230,7 @@ class Player extends Sprite {
     update() {
 
         super.draw();
+
         //posição atual do player
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
@@ -238,8 +239,8 @@ class Player extends Sprite {
             this.vida -= 10;
             idVida.innerHTML = this.vida;
             if (this.vida <= 0) {
-                location.reload();
                 alert("morreu");
+                location.reload();
             }
         }
 
@@ -332,7 +333,9 @@ class Player extends Sprite {
 
 
         if (teclasEmBaixo['ArrowLeft']) {
+            super.animarEsquerda();
             posicaoX--;
+            
 
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
@@ -343,7 +346,9 @@ class Player extends Sprite {
         }
 
         if (teclasEmBaixo['ArrowRight']) {
+            super.animarDireita();
             posicaoX++;
+            
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
@@ -354,7 +359,7 @@ class Player extends Sprite {
         }
 
         if (teclasEmBaixo['ArrowUp']) {
-
+            super.animarCima();
             posicaoY--;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
@@ -365,7 +370,7 @@ class Player extends Sprite {
         }
 
         if (teclasEmBaixo['ArrowDown']) {
-
+            super.animarBaixo();
             posicaoY++;
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
@@ -664,7 +669,7 @@ IlhaDireita.load("Imagens/Camada 2/ilha_direita.png");
 IlhaEsquerda.load("Imagens/Camada 2/ilha_esquerda.png");
 Placa.load("Imagens/Camada 3/placa.png");
 PlacaNeve.load("Imagens/Camada 3/placa_neve.png");
-Player.load("Imagens/player.png");
+Player.load("Imagens/player_sprite.png",16,4);
 Enemy.load("Imagens/enemy.png");
 
 

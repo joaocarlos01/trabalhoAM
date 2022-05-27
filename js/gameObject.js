@@ -70,8 +70,71 @@ class AnimatedSprite extends Sprite {
         this.sy = 0;
     }
 
-    update() {
+    animarEsquerda(){
 
+        this.currentFrame++;
+
+        if (this.currentFrame > this.constructor.numberFrames)
+            this.currentFrame = 1;
+
+        let deltaX = (this.currentFrame - 1)% this.constructor.numberFramesPerRow;
+        let deltaY = 297;
+
+      
+        this.sx = deltaX * this.constructor.slice.width;
+        this.sy = deltaY ;
+
+    }
+
+    animarDireita(){
+
+        this.currentFrame++;
+
+        if (this.currentFrame > this.constructor.numberFrames)
+            this.currentFrame = 1;
+
+        let deltaX = (this.currentFrame - 1)% this.constructor.numberFramesPerRow;
+        let deltaY = 148;
+
+      
+        this.sx = deltaX * this.constructor.slice.width;
+        this.sy = deltaY ;
+
+    }
+
+    animarCima(){
+
+        this.currentFrame++;
+
+        if (this.currentFrame > this.constructor.numberFrames)
+            this.currentFrame = 1;
+
+        let deltaX = (this.currentFrame - 1)% this.constructor.numberFramesPerRow;
+        let deltaY = 444;
+
+      
+        this.sx = deltaX * this.constructor.slice.width;
+        this.sy = deltaY ;
+
+    }
+
+    animarBaixo(){
+
+        this.currentFrame++;
+
+        if (this.currentFrame > this.constructor.numberFrames)
+            this.currentFrame = 1;
+
+        let deltaX = (this.currentFrame - 1)% this.constructor.numberFramesPerRow;
+        let deltaY = 0;
+
+      
+        this.sx = deltaX * this.constructor.slice.width;
+        this.sy = deltaY ;
+
+    }
+
+    update() {
 
         this.currentFrame++;
 
