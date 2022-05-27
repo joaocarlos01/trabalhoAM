@@ -668,7 +668,7 @@ Player.load("Imagens/player.png");
 Enemy.load("Imagens/enemy.png");
 
 
-const fps = 16;
+const fps = 10;
 const timeBetweenUpdateDraw = 1000 / fps;
 let acumulatedTimeBetweenFrames = 0;
 let timeLastFrame;
