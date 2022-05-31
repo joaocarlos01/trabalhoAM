@@ -1,26 +1,22 @@
 "use strict";
 
-const mainTiles = document.querySelectorAll("div > div");
-const map = document.querySelector("#map");
-const btnSave = document.querySelector("#export");
-const uploader = document.querySelector("#uploader");
+const mainTiles = document.querySelectorAll("div > div"); //peças do mapa
+const map = document.querySelector("#map"); //mapa
+const btnSave = document.querySelector("#export"); // botão de save
+const btnStart = document.getElementById("idMedidas"); // botão de start
+const reset = document.getElementById("idReset"); // botão de reset
 
+// Sliders para definir o número de colunas e filas
 var filasSlider = document.getElementById("filasSlider");
 var filasText = document.getElementById("filasText");
-
 var colunasSlider = document.getElementById("colunasSlider");
 var colunasText = document.getElementById("colunasText");
 
-const relva = document.getElementById("relva");
-const terra = document.getElementById("terra");
-const neve = document.getElementById("neve");
-const pedra = document.getElementById("pedra");
-const agua = document.getElementById("agua");
-const botao = document.getElementById("idMedidas");
-const reset = document.getElementById("idReset");
 
+//Inicio do programa
 $("#idReset,#blocos,#export").hide();
 
+//Recolha dos valores dos sliders
 filasText.innerHTML = filasSlider.value;
 filasSlider.oninput = function() {
     filasText.innerHTML = this.value;
@@ -32,32 +28,35 @@ colunasSlider.oninput = function() {
 }
 
 
+// Aconmtecimentos após o click no start
+btnStart.onclick = function atualizarMedidas() {
+    $("#row1, #row2,#colunasSlider, #filasSlider, #colunasText, #filasText, #idMedidas, #valor, #valor3").hide();// Esconder os elementos iniciais
+    $("#export,#idReset,#blocos").show(); // Mostrar os elementos do gerador
 
-botao.onclick = function atualizarMedidas() {
-    $("#row1, #row2,#colunasSlider, #filasSlider, #colunasText, #filasText, #idMedidas, #valor, #valor3").hide();
-    $("#export,#idReset,#blocos").show();
+    map.style.width = 32 * `${colunasSlider.value}` + "px"; //Definição da largura do mapa
+    map.style.heigth = 32 * `${filasSlider.value}` + "px"; //Definição da altura do mapa
 
-    map.style.width = 32 * `${colunasSlider.value}` + "px";
-    map.style.heigth = 32 * `${filasSlider.value}` + "px";
-
+    //criação do mapa para colocar os blocos
     createGrid(colunasSlider.value, filasSlider.value);
+    // Função de drag and drop
     setUpDragEvents();
 }
 
-
+//Evento para o botao de save
 btnSave.addEventListener("click", (event) => {
     event.preventDefault();
     const mapJSON = generateMapJSON();
     downloadFile(mapJSON);
 });
 
-reset.addEventListener("click", (event) => {
+//Evento para o botao de reset
+reset.addEventListener("click", () => {
     $("#row1, #row2, #export,#colunasSlider, #filasSlider, #colunasText, #filasText, #idMedidas, #valor, #valor3").show();
     $("#export,#idReset,#blocos").show();
     location.reload();
 });
 
-
+//função para criar o mapa
 function createGrid(numRows, numCols) {
     const numCells = numRows * numCols;
 
@@ -71,6 +70,7 @@ function createGrid(numRows, numCols) {
 
 // DRAG AND DROP
 
+// Eventos de drag and drop para cada bloco
 function setUpDragEvents() {
     const tiles = document.querySelectorAll(".cell");
 
@@ -86,6 +86,8 @@ function setUpDragEvents() {
         tile.addEventListener("drop", drop);
     });
 }
+
+// Funções do drag and drop
 
 function dragStart(event) {
     event.dataTransfer.setData("uuid", event.target.id);
@@ -109,10 +111,10 @@ function dragLeave(event) {
     slot.classList.remove("hover");
 }
 
+// Colocar a peça no sitio escolhido pelo utilizador
 function drop(event) {
     const slot = event.target.className.includes("cell") ?
-        event.target :
-        event.target.parentElement;
+        event.target : event.target.parentElement;
     slot.classList.remove("hover");
 
     const id = event.dataTransfer.getData("uuid");
@@ -146,6 +148,8 @@ function cloneNodeElement(node) {
 
 // DRAG AND DROP
 
+// Função para gerar o ficheiro JSON
+
 function generateMapJSON() {
     const cells = map.querySelectorAll(".cell");
 
@@ -168,6 +172,7 @@ function generateMapJSON() {
     return JSON.stringify(tiles, null, "\t");
 }
 
+
 function getImageDataIndex(images) {
     let dataIndex = [];
 
@@ -177,6 +182,8 @@ function getImageDataIndex(images) {
 
     return dataIndex;
 }
+
+// Função para fazer o download dos ficheiros
 
 function downloadFile(content) {
     const uuid = Date.now();
