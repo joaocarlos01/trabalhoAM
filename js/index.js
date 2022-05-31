@@ -1,12 +1,18 @@
+// Definição do tamanho do canvas.
+// 1280x960
 canvas.width = 40 * 32;
 canvas.height = 30 * 32;
 
-
+// Criação da classe Tile (Peça).
+// Cada tile é composto por uma posição, de coordenadas x, y, largura e altura.
 class Tile extends Sprite {
     constructor(x, y, width, height) {
         super(x, y, width, height);
     }
 }
+
+// Nesta secção, são criadas as classes para cada peça presente no mapa.
+// Estas classes são herdeiras da classe Tile, logo terão uma posição, largura e altura.
 
 class Relva extends Tile {
 
@@ -144,20 +150,24 @@ class PlacaNeve extends Tile {
 
 }
 
-
-
-
+// Criação da classe Player, herdeira da classe AnimatedSprite criada no ficheiro gameObjects.js.
+// Cada player terá uma posição, altura, largura, velocidade de movimento, vida e número de placas que possui.
 class Player extends AnimatedSprite {
+
     //Construtor de um jogador
+
     constructor(x, y, width, height) {
         super(x, y, width, height);
+
         //A velocidade de um jogador é 32
         this.speed = 32;
         this.vida = 100;
         this.placas = 0;
     }
 
-
+    // método para detetar colisão com os blocos.
+    // Se o jogador e determinado tipo de tile ,de uma dada camada, tiverem a mesma posição, será returnado true.
+    // Cada número (Ex: 44) representa o id de cada tipo de tile.
     colisaoBlocos(x, y) {
         if (camada1[y][x] === 44) {
             return true;
@@ -168,6 +178,9 @@ class Player extends AnimatedSprite {
         }
     }
 
+    //método para detetar colisão com água.
+    //tem o mesmo funcionamento do metodo anterior.
+
     colisaoAgua(x, y) {
         if (camada1[y][x] === 42) {
 
@@ -176,6 +189,9 @@ class Player extends AnimatedSprite {
             return false
         };
     }
+
+    //método para detetar colisão com o limite do mapa, na posição inicial do jogador
+    //tem o mesmo funcionamento do metodo anterior.
 
     colisaoInicioMapa(x, y) {
         if (camada1[y][x] == 504) {
@@ -186,6 +202,9 @@ class Player extends AnimatedSprite {
         };
     }
 
+    //método para detetar colisão com o limite do mapa, no final do mapa.
+    //tem o mesmo funcionamento do metodo anterior.
+
     colisaoFimMapa(x, y) {
         if (camada1[y][x] == 505) {
 
@@ -194,6 +213,9 @@ class Player extends AnimatedSprite {
             return false
         };
     }
+
+    //método para detetar colisão com as placas, de modo a que o jogador as possa colecionar durante o jogo
+    //tem o mesmo funcionamento do metodo anterior.
 
     colisaoPlaca(x, y) {
         if (camada3[y][x] == 600 || camada3[y][x] == 601 || camada3[y][x] == 602 || camada3[y][x] == 603 || camada3[y][x] == 604 ||
@@ -204,6 +226,9 @@ class Player extends AnimatedSprite {
             return false
         };
     }
+
+    //método para detetar colisão com os inimigos espalhados pelo mapa.
+    // Se a posição dos inimigos e do player for a mesma, será returnado true.
 
     colisaoEnemy(x, y) {
         if (
@@ -226,28 +251,34 @@ class Player extends AnimatedSprite {
     }
 
 
-
+    //metodo update() do jogador
+    // Irá atualizar as propriedades do jogador.
     update() {
 
+        // Referência ao metodo draw() da super class
         super.draw();
 
-        //posição atual do player
+        //posição atual do jogador
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
-        let ganhar = false;
+
+        // Acontecimento, caso haja colisão com a água
+        // Neste caso será retirado 10 pontos de vida, durante o tempo em que o jogador estiver dentro de água
         if (this.colisaoAgua(posicaoX, posicaoY)) {
             this.vida -= 10;
-            idVida.innerHTML = this.vida;
+            idVida.innerHTML = this.vida; // Atualização da scoreboard
             if (this.vida <= 0) {
                 alert("morreu");
                 location.reload();
             }
         }
 
+        // Condição, caso seja coletada uma placa
+        // Cada placa tem um id próprio, sendo que será removida do array pecas da camada 3(Camada exclusiva das placas) quando o player colidir com a mesma.
+        // No lugar da placa no array, será introduzido o valor 0.
+
         if (this.colisaoPlaca(posicaoX, posicaoY)) {
             this.placas++;
-            var qtd = 0;
-
             if (camada3[posicaoY][posicaoX] == 600) {
                 tilemap3.arrayPecas.splice(0, 1, 0);
 
@@ -294,17 +325,12 @@ class Player extends AnimatedSprite {
 
             }
             console.log(tilemap3.arrayPecas)
-            camada3[posicaoY][posicaoX] = 999;
-
-
-
-
-            idScore.innerHTML = player.placas + " / 11";
-            if (this.placas == 11) {
-                ganhar = true;
-            }
+            camada3[posicaoY][posicaoX] = 999; // Alteração do id da posição da placa na camada 3.
+            idScore.innerHTML = player.placas + " / 11"; // Atualização do score do jogador.
         }
-        //Controlos com as setas
+        
+        // Consequências da colisão com um inimigo 
+        // Neste caso, por cada colisão com inimigos, o jogador perde 25 pontos de vida
 
         if (this.colisaoEnemy(posicaoX, posicaoY)) {
             this.vida -= 25;
@@ -316,11 +342,15 @@ class Player extends AnimatedSprite {
             }
 
         }
+
+        // Se o jogador tentar sair do mapa, será movido para a posição inical
         if (this.colisaoInicioMapa(posicaoX, posicaoY)) {
             this.x = 64;
             this.y = 64;
         }
 
+        // Se o jogador tentar sair do mapa, será movido para a posição inical
+        // Se já não existirem placas para coletar, será terminado o jogo.
         if (this.colisaoFimMapa(posicaoX, posicaoY)) {
             if (this.placas == 11) {
                 alert("WIN");
@@ -331,50 +361,59 @@ class Player extends AnimatedSprite {
             }
         }
 
+        //Controlar o player com as setas
 
         if (teclasEmBaixo['ArrowLeft']) {
-            super.animarEsquerda();
-            posicaoX--;
+            super.animarEsquerda(); // Animação do sprite do player
+            posicaoX--; // detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
             
-
+            //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
             }
 
+            //Atualização da coordenada X do jogador
             this.x -= this.speed;
         }
 
         if (teclasEmBaixo['ArrowRight']) {
-            super.animarDireita();
-            posicaoX++;
+            super.animarDireita(); // Animação do sprite do player
+            posicaoX++; // detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
             
+             //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
             }
-
+            //Atualização da coordenada X do jogador
             this.x += this.speed;
 
         }
 
         if (teclasEmBaixo['ArrowUp']) {
-            super.animarCima();
-            posicaoY--;
+            super.animarCima(); // Animação do sprite do player
+            posicaoY--;// detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
+            
+             //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
             }
-
+            //Atualização da coordenada Y do jogador
             this.y -= this.speed;
             return;
         }
 
         if (teclasEmBaixo['ArrowDown']) {
-            super.animarBaixo();
-            posicaoY++;
+            super.animarBaixo(); // Animação do sprite do player
+            posicaoY++;// detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
+           
+            //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
             }
+
+            //Atualização da coordenada Y do jogador
             this.y += this.speed;
             return;
         }
@@ -384,6 +423,9 @@ class Player extends AnimatedSprite {
 
 }
 
+// Criação da classe Enemy, herdeira da classe AnimatedSprite criada no ficheiro gameObjects.js.
+// Cada enemy terá uma posição, altura, largura, velocidade de movimento e vida 
+
 class Enemy extends AnimatedSprite {
     constructor(x, y, width, height) {
         super(x, y, width, height);
@@ -391,6 +433,10 @@ class Enemy extends AnimatedSprite {
         this.vida = 100;
 
     }
+
+    // método para detetar colisão com os blocos.
+    // Se o jogador e determinado tipo de tile ,de uma dada camada, tiverem a mesma posição, será returnado true.
+    // Cada número (Ex: 44) representa o id de cada tipo de tile.
     colisaoBlocos(x, y) {
         if (camada1[y][x] == 44 || camada1[y][x] == 42 || camada2[y][x] == 201 || camada2[y][x] == 379) {
             return true;
@@ -399,14 +445,22 @@ class Enemy extends AnimatedSprite {
         }
     }
 
+    //metodo draw() do inimigo
+
     draw() {
+        // Referência ao metodo draw() da super class
         super.draw();
     }
 
+    //metodo update() do inimigo
+    // Irá atualizar as propriedades do inimigo.
+
     update() {
+        //posição atual do jogador
         let posicaoX = this.x / this.width;
         let posicaoY = this.y / this.height;
 
+        // Animação com recurso ao sprite, dependendo da direção do inimigo
         if(this.speed > 0 ){
             super.animarDireitaZombie();
             posicaoX ++;
@@ -415,16 +469,25 @@ class Enemy extends AnimatedSprite {
             super.animarEsquerdaZombie();
             posicaoX--
         }
+
+        // Condição para alterar a direção do inimigo
+        // Quando existe uma colisão, o valor da velocidade é alterado para negativo ou positivo
+        // se this.speed === -8, quando existir colisão this.speed = -(-8), ou seja 8.
         
         if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
          this.speed = -(this.speed);
         }
-      
+        
+        //Atualização da coordenada X do jogador
         this.x += this.speed;
 
     }
 
 }
+
+// Criação da classe Tilemap, herdeira da clase GameObject, criada no ficheiro gameObjects.js.
+// Cada tilemap é constituido por uma posição, altura, largura e respoetivo mapa.
+// Existe ainda um array, onde serão gurdadas todas as peças gerada para o tilemap
 
 class Tilemap extends GameObject {
 
@@ -435,6 +498,10 @@ class Tilemap extends GameObject {
         this.gerarMapa();
     }
 
+    // Metodo para gerar mapa
+    // Como o array das camadas é do tipo [][], seão utilizados dois ciclos for para percorrer todo o array.
+    // Quando o id da peça for igual ao id presente no mapa, a respetiva peça é gerada
+
     gerarMapa() {
 
         for (var i = 0; i < this.mapa.length; i++) {
@@ -443,6 +510,8 @@ class Tilemap extends GameObject {
             }
         }
     }
+
+    // Condições para gerar as peças, mediante o id.
 
     gerarPeca(fila, coluna, posicaoPeca) {
 
@@ -622,6 +691,8 @@ class Tilemap extends GameObject {
 
     }
 
+    // metodo draw()
+    // desenha a peça caso o elemento do array seja diferente de 0.
     draw() {
 
         for (var i = 0; i < this.arrayPecas.length; i++) {
@@ -633,17 +704,17 @@ class Tilemap extends GameObject {
             }
         }
     }
-
+    // metodo draw()
     update() {
         this.draw();
     }
 
 }
 
-//load do player
 
 
-//load dos mosaicos
+
+//load das imagens de cada classe
 Relva.load("Imagens/Camada 1/relva.png");
 Pedra.load("Imagens/Camada 1/pedra.png");
 Neve.load("Imagens/Camada 1/neve.png");
@@ -687,7 +758,7 @@ const timeBetweenUpdateDraw = 1000 / fps;
 let acumulatedTimeBetweenFrames = 0;
 let timeLastFrame;
 
-
+// Criação dos vários atributos do jogo
 var camada1 = [];
 var camada2 = [];
 var camada3 = [];
@@ -697,11 +768,13 @@ let numAssetsLoaded = 0;
 var player, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11;
 var idScore, idVida;
 
+// Implementação do modo fullscreen
 document.addEventListener("dblclick", ()=>{
 document.documentElement.requestFullscreen().catch((e) => {
     console.log(e);
 });
 });
+
 
 window.addEventListener('assetLoad', (e) => {
 
@@ -713,6 +786,10 @@ window.addEventListener('assetLoad', (e) => {
     }
 });
 
+// Arrays que representam cada camada do tilemap.
+// 1º camada representa o chão e os limites do mapa.
+// 2º camada representa as árvores, pedras e arbustros do mapa.
+// 3º camada é exclusiva para as placas coletáveis.
 
 camada1 = [
     [44, 504, 504, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44],
@@ -813,6 +890,8 @@ camada3 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
+// Instanciar os objetos
+
 tilemap = new Tilemap(0, 0, canvas.width, canvas.height, camada1);
 tilemap2 = new Tilemap(0, 0, canvas.width, canvas.height, camada2);
 tilemap3 = new Tilemap(0, 0, canvas.width, canvas.height, camada3);
@@ -828,15 +907,13 @@ enemy8 = new Enemy(1248, 224, 32, 32);
 enemy9 = new Enemy(1088, 640, 32, 32);
 enemy10 = new Enemy(1248, 416, 32, 32);
 enemy11 = new Enemy(792, 736, 32, 32);
+
+// Elementos da score board
 idScore = document.getElementById("idScore");
 idVida = document.getElementById("idVida");
 idVida.innerHTML = 100;
-var jogo = document.getElementById("idJogo");
-var botao = document.getElementById("idBotao");
 
-
-
-
+// função para começar o jogo
 function startGame() {
 
     timeLastFrame = performance.now();
@@ -844,6 +921,7 @@ function startGame() {
 
 }
 
+//funçao para animar todos os elementos do jogo
 function animate(time) {
     requestAnimationFrame(animate);
 
