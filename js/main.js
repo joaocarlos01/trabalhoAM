@@ -16,6 +16,7 @@ const GameStatus = {
     START: 2,
 };
 
+//Lista de cores correspondente a função de background do jogo
 const backgroundColors = {
     green: "rgb(78, 197, 78)",
     red: "rgb(206, 63, 63)",
@@ -27,12 +28,14 @@ let currentStatus = GameStatus.STOP;
 
 let currentTime, countDownTimer;
 
+//Função que remete ao tempo aliatório para o jogo começar
 function get_random_time(min, max) {
     let result = Math.floor(Math.random() * Math.floor(max)) + min;
     result = result * 1000;
     return result;
 }
 
+//Função que ao fim do jogo onde o ecrã é azul
 function end_game() {
 
     let date2 = new Date();
@@ -45,6 +48,7 @@ function end_game() {
 
 }
 
+//Função quando começa o jogo e quando o tempo de espera acaba aparece o ecrã verde onde tem se clicar
 function startTimer(time) {
 
     countDownTimer = setTimeout(function() {
@@ -57,6 +61,7 @@ function startTimer(time) {
     }, time);
 }
 
+// Função para começar o jogo onde se espera entre 1 a 3 segundos e o ecrã está vermelho
 function start_game() {
     tempo.style.pointerEvents = "none";
 
@@ -67,6 +72,7 @@ function start_game() {
     startTimer(change_time);
 }
 
+// Event Listener para mudar o estado corrente do jogo
 tempo.addEventListener("click", function() {
 
     if (currentStatus === GameStatus.START) {
