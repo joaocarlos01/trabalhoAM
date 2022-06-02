@@ -499,7 +499,7 @@ class Tilemap extends GameObject {
     }
 
     // Metodo para gerar mapa
-    // Como o array das camadas é do tipo [][], seão utilizados dois ciclos for para percorrer todo o array.
+    // Como o array das camadas é do tipo [][], serão utilizados dois ciclos for para percorrer todo o array.
     // Quando o id da peça for igual ao id presente no mapa, a respetiva peça é gerada
 
     gerarMapa() {
@@ -769,7 +769,9 @@ var player, enemy, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy
 var idScore, idVida;
 
 // Implementação do modo fullscreen
-document.addEventListener("dblclick", ()=>{
+var fullscreen = document.getElementById("idFullscreen");
+
+fullscreen.addEventListener("click", ()=>{
 document.documentElement.requestFullscreen().catch((e) => {
     console.log(e);
 });
