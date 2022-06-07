@@ -269,6 +269,8 @@ class Player extends AnimatedSprite {
             idVida.innerHTML = this.vida; // Atualização da scoreboard
             if (this.vida <= 0) {
                 alert("morreu");
+                this.x = 32;
+                this.y = 64;
                 location.reload();
             }
         }
@@ -328,7 +330,7 @@ class Player extends AnimatedSprite {
             camada3[posicaoY][posicaoX] = 999; // Alteração do id da posição da placa na camada 3.
             idScore.innerHTML = player.placas + " / 11"; // Atualização do score do jogador.
         }
-        
+
         // Consequências da colisão com um inimigo 
         // Neste caso, por cada colisão com inimigos, o jogador perde 25 pontos de vida
 
@@ -366,7 +368,7 @@ class Player extends AnimatedSprite {
         if (teclasEmBaixo['ArrowLeft']) {
             super.animarEsquerda(); // Animação do sprite do player
             posicaoX--; // detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
-            
+
             //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
@@ -380,8 +382,8 @@ class Player extends AnimatedSprite {
         if (teclasEmBaixo['ArrowRight']) {
             super.animarDireita(); // Animação do sprite do player
             posicaoX++; // detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
-            
-             //Evento caso haja colisão
+
+            //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
 
                 return;
@@ -393,9 +395,9 @@ class Player extends AnimatedSprite {
 
         if (teclasEmBaixo['ArrowUp']) {
             super.animarCima(); // Animação do sprite do player
-            posicaoY--;// detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
-            
-             //Evento caso haja colisão
+            posicaoY--; // detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
+
+            //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
             }
@@ -406,8 +408,8 @@ class Player extends AnimatedSprite {
 
         if (teclasEmBaixo['ArrowDown']) {
             super.animarBaixo(); // Animação do sprite do player
-            posicaoY++;// detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
-           
+            posicaoY++; // detetar a colisão para a posição seguinte, para que não seja possivel pisar os dterminados blocos
+
             //Evento caso haja colisão
             if (this.colisaoBlocos(posicaoX, posicaoY)) {
                 return;
@@ -461,11 +463,10 @@ class Enemy extends AnimatedSprite {
         let posicaoY = this.y / this.height;
 
         // Animação com recurso ao sprite, dependendo da direção do inimigo
-        if(this.speed > 0 ){
+        if (this.speed > 0) {
             super.animarDireitaZombie();
-            posicaoX ++;
-        }
-        else{
+            posicaoX++;
+        } else {
             super.animarEsquerdaZombie();
             posicaoX--
         }
@@ -473,11 +474,11 @@ class Enemy extends AnimatedSprite {
         // Condição para alterar a direção do inimigo
         // Quando existe uma colisão, o valor da velocidade é alterado para negativo ou positivo
         // se this.speed === -8, quando existir colisão this.speed = -(-8), ou seja 8.
-        
+
         if (this.colisaoBlocos(posicaoX, posicaoY) == true) {
-         this.speed = -(this.speed);
+            this.speed = -(this.speed);
         }
-        
+
         //Atualização da coordenada X do jogador
         this.x += this.speed;
 
@@ -695,16 +696,16 @@ class Tilemap extends GameObject {
     // desenha a peça caso o elemento do array seja diferente de 0.
     draw() {
 
-        for (var i = 0; i < this.arrayPecas.length; i++) {
-            if (this.arrayPecas[i] === 0) {
+            for (var i = 0; i < this.arrayPecas.length; i++) {
+                if (this.arrayPecas[i] === 0) {
 
-            } else {
-                var peca = this.arrayPecas[i]
-                peca.draw();
+                } else {
+                    var peca = this.arrayPecas[i]
+                    peca.draw();
+                }
             }
         }
-    }
-    // metodo draw()
+        // metodo draw()
     update() {
         this.draw();
     }
@@ -749,8 +750,8 @@ IlhaDireita.load("Imagens/Camada 2/ilha_direita.png");
 IlhaEsquerda.load("Imagens/Camada 2/ilha_esquerda.png");
 Placa.load("Imagens/Camada 3/placa.png");
 PlacaNeve.load("Imagens/Camada 3/placa_neve.png");
-Player.load("Imagens/player_sprite.png",16,4);
-Enemy.load("Imagens/zombie_sprite.png",16,4);
+Player.load("Imagens/player_sprite.png", 16, 4);
+Enemy.load("Imagens/zombie_sprite.png", 16, 4);
 
 
 const fps = 10;
@@ -771,10 +772,10 @@ var idScore, idVida;
 // Implementação do modo fullscreen
 var fullscreen = document.getElementById("idFullscreen");
 
-fullscreen.addEventListener("click", ()=>{
-document.documentElement.requestFullscreen().catch((e) => {
-    console.log(e);
-});
+fullscreen.addEventListener("click", () => {
+    document.documentElement.requestFullscreen().catch((e) => {
+        console.log(e);
+    });
 });
 
 
