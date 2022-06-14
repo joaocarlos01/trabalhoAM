@@ -169,9 +169,8 @@ class Player extends AnimatedSprite {
     // Se o jogador e determinado tipo de tile ,de uma dada camada, tiverem a mesma posição, será returnado true.
     // Cada número (Ex: 44) representa o id de cada tipo de tile.
     colisaoBlocos(x, y) {
-        if (camada1[y][x] === 44) {
-            return true;
-        } else if (camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379) {
+        if (camada1[y][x] === 44 || camada2[y][x] === 21 || camada2[y][x] === 376 || camada2[y][x] === 378 || camada2[y][x] === 202 ||
+            camada2[y][x] === 184 || camada2[y][x] === 203 || camada2[y][x] === 23 || camada2[y][x] === 379 || camada2[y][x] === 201) {
             return true;
         } else {
             return false
